@@ -3,6 +3,8 @@ package com.games.bitworxx.engine;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 
+import com.games.bitworxx.engine.characters.GameConst;
+
 import java.util.ArrayList;
 
 /**
@@ -13,7 +15,7 @@ public class MaceDrawer {
     private ArrayList<BackRect> BackRects = new ArrayList<>();
 
     Rect BOUNDS=null;
-
+    public boolean MOVEME=true;
 
 
     public void onDraw(Canvas canvas,Rect bounds,int t)
@@ -22,7 +24,7 @@ public class MaceDrawer {
         if (BackRects.size() == 0) generateRects(t);
         try {
 
-            int index =4;
+            int index =2;
             for(int x=0;x<index;x++)
                 BackRects.get(x).onDraw(canvas,bounds);
 
@@ -35,7 +37,7 @@ public class MaceDrawer {
     {
         int size = ConstColor.Level1.length();
 
-        int max = BOUNDS.width() /2;
+        int max = BOUNDS.width() /1;
         int height = BOUNDS.height()/20;
         boolean alt = false;
         int l=0;
@@ -72,6 +74,7 @@ public class MaceDrawer {
     }
     public void move(int move)
     {
+        if(!MOVEME)return;
         for(BackRect r : BackRects)
         {
             r.moveLeft(move);
@@ -87,7 +90,7 @@ public class MaceDrawer {
             r.moveLeft(move);
             BackRects.remove(0);
             BackRects.add(r);
-
+            GameConst.GameCount++;
         }
 
 

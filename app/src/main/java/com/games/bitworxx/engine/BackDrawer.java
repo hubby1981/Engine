@@ -15,7 +15,8 @@ public class BackDrawer {
     Rect BOUNDS=null;
     boolean Running=false;
     public int LAST =0;
-public boolean UPDATE = false;
+    public boolean UPDATE = false;
+    public boolean MOVEME=true;
     public void onDraw(Canvas canvas,Rect bounds)
     {
         BOUNDS=bounds;
@@ -57,7 +58,7 @@ UPDATE=true;
 
                     Running=true;
                     while(Running) {
-                        move(10);
+                        move(5);
                         UPDATE=true;
                         MainActivity.Update.run();
                         try {
@@ -75,6 +76,7 @@ UPDATE=true;
 
     public void move(int move)
     {
+        if(!MOVEME)return;
         for(BackRect r : BackRects)
         {
             r.moveLeft(move);
@@ -91,7 +93,7 @@ UPDATE=true;
             BackRects.remove(0);
             BackRects.add(r);
             LAST++;
-            if(LAST>=20)
+            if(LAST>=50)
             {
                 LAST=0;
                 ConstColor.setRandom();

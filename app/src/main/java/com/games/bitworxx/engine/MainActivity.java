@@ -2,6 +2,7 @@ package com.games.bitworxx.engine;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.renderscript.RenderScript;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -16,11 +17,15 @@ public class MainActivity extends ActionBarActivity {
 
     public static Runnable Update;
     public static SharedPreferences Preferences;
+    private static GameConst GM;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        GM=new GameConst();
         setContentView(R.layout.activity_main);
         Preferences=getSharedPreferences(TXT.KEY_GLOBAL, Context.MODE_PRIVATE);
+        getWindowManager().getDefaultDisplay().getMetrics(GM.Metrics);
+        GM.FONT.setTypeface(Typeface.createFromAsset(getAssets(), "venus.ttf"));
         Update=new Runnable() {
             @Override
             public void run() {
@@ -36,7 +41,7 @@ public class MainActivity extends ActionBarActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                findViewById(R.id.view).invalidate();
+                findViewById(R.id.view).invalidate();findViewById(R.id.viewControl).invalidate();
             }
         });
     }

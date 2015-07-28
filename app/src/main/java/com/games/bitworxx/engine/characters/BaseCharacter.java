@@ -4,11 +4,14 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Point;
 import android.graphics.Rect;
 
 
 import com.games.bitworxx.engine.RandomRange;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -168,44 +171,19 @@ protected  String StoreProduct;
 
     public abstract boolean isLocked();
 
-
-    public Bitmap drawBitmap(boolean release)
+    public ArrayList<Point> getHitPoints()
     {
-        if(!release&&Icon!=null)
-            return Icon;
+        ArrayList<Point> result=new ArrayList<>();
+        int m = getBody().width()/4;
+        result.add(new Point(getBody().left+m,getBody().top+m));
+        result.add(new Point(getBody().right-m,getBody().top+m));
+        result.add(new Point(getBody().right-m,getBody().bottom-m));
+        result.add(new Point(getBody().left+m,getBody().bottom-m));
 
-        Icon=null;
-
-        Rect body =new Rect(25,25,160,180);
-
-        Icon=Bitmap.createBitmap(200,200, Bitmap.Config.ARGB_4444);
-        Canvas canvas = new Canvas(Icon);
-        Paint back = new Paint();
-        back.setStyle(Paint.Style.FILL);
-        back.setColor(BackColor);
-
-        int x1 = Size/6;
-        int w1=Size/6;
-
-        drawEye(body, canvas, back, x1, w1);
-
-        back.setColor(BackColor);
-
-        onDrawOther(canvas, back);
-        if(!IsAnimated)
-        {
-
-            canvas.drawRect(getFlyRect3(body), back);
-
-            canvas.drawRect(getFlyRect4(body), back);
-
-        }else{
-        onDrawFly(canvas, back, !IsAnimated,body);}
-
-        back=null;
-        canvas=null;
-        return Icon;
+        return result;
     }
+
+
 
     protected  abstract void drawEye(Rect body, Canvas canvas, Paint back, int x1, int w1);
 
@@ -259,10 +237,11 @@ protected  String StoreProduct;
     public void animateSink(int x,int y)
     {
 
+
         if(x==0 && y==1)
         {
 
-            Y+=getSinkRate()*SinkRate*getPowerRate()*1.2;
+            Y+=getSinkRate()*SinkRate*getPowerRate()*0.7;
         }
         else if(x==1 && y==0)
         {

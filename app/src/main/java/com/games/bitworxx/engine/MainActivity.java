@@ -1,7 +1,10 @@
 package com.games.bitworxx.engine;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Canvas;
 import android.graphics.Typeface;
 import android.renderscript.RenderScript;
 import android.support.v7.app.ActionBarActivity;
@@ -12,20 +15,23 @@ import android.view.MenuItem;
 import com.games.bitworxx.engine.characters.GameConst;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends Activity {
 
 
     public static Runnable Update;
+    public static Runnable Start;
+
     public static SharedPreferences Preferences;
     private static GameConst GM;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         GM=new GameConst();
-        setContentView(R.layout.activity_main);
         Preferences=getSharedPreferences(TXT.KEY_GLOBAL, Context.MODE_PRIVATE);
         getWindowManager().getDefaultDisplay().getMetrics(GM.Metrics);
         GM.FONT.setTypeface(Typeface.createFromAsset(getAssets(), "venus.ttf"));
+        setContentView(R.layout.activity_main);
+
         Update=new Runnable() {
             @Override
             public void run() {
@@ -33,15 +39,29 @@ public class MainActivity extends ActionBarActivity {
             }
         };
         runOnUiThread(Update);
+        Start=new Runnable() {
+            @Override
+            public void run() {
+                startGame();
+            }
+        };
 
     }
+
+
+    public  void startGame()
+    {
+        Intent i = new Intent(this, GameActivity.class);
+        startActivity(i);
+    }
+
 
     private void update()
     {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                findViewById(R.id.view).invalidate();findViewById(R.id.viewControl).invalidate();
+                findViewById(R.id.view).invalidate();
             }
         });
     }
@@ -74,7 +94,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
 
-    public void saveHigh(int best)
+    public static void saveHigh(int best)
     {
         SharedPreferences pref = getPref();
         SharedPreferences.Editor edit = pref.edit();

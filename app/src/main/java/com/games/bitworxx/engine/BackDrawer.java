@@ -3,6 +3,8 @@ package com.games.bitworxx.engine;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 
+import com.games.bitworxx.engine.characters.GameConst;
+
 import java.util.ArrayList;
 
 /**
@@ -11,7 +13,7 @@ import java.util.ArrayList;
 public class BackDrawer {
 
     private ArrayList<BackRect> BackRects = new ArrayList<>();
-    Thread Update=null;
+    public Thread Update=null;
     Rect BOUNDS=null;
     boolean Running=false;
     public int LAST =0;
@@ -58,9 +60,9 @@ UPDATE=true;
 
                     Running=true;
                     while(Running) {
-                        move(5);
+                        move(GameConst.MOVE_BACK);
                         UPDATE=true;
-                        MainActivity.Update.run();
+
                         try {
                             Thread.sleep(32);
                         } catch (InterruptedException e) {

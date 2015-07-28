@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 
 import com.games.bitworxx.engine.characters.GameConst;
+import com.games.bitworxx.engine.characters.Spider;
 
 import java.util.ArrayList;
 
@@ -17,6 +18,7 @@ public class MaceDrawer {
     Rect BOUNDS=null;
     public boolean MOVEME=true;
 
+    ArrayList<Spider> Spiders = new ArrayList<>();
 
     public void onDraw(Canvas canvas,Rect bounds,int t)
     {
@@ -28,10 +30,27 @@ public class MaceDrawer {
             for(int x=0;x<index;x++)
                 BackRects.get(x).onDraw(canvas,bounds);
 
+            for(Spider s:Spiders)
+                s.onDraw(canvas);
+
         }catch(Exception e){};
     }
 
+        public boolean isInRect(int x,int y)
+        {
+            int index =2;
+            boolean result=false;
+            for(int xx=0;xx<index;xx++)
+                if(!result)
+                {
+                    BackRect r=BackRects.get(xx);
+                    result = r.BaseRect.contains(x,y);
 
+                    if(!result&&r.BaseRect2!=null)
+                        result=r.BaseRect2.contains(x,y);
+                }
+            return result;
+        }
 
     private void generateRects(int t)
     {
@@ -47,7 +66,8 @@ public class MaceDrawer {
         {
             int count=getCount1();
             int h =(int)(height*1.6)*count;
-            BackRects.add(new BackRect(new Rect(l,t,l+max,t+h),alt?128:255,true,getCount2(),height));
+            Rect rc=new Rect(l,t,l+max,t+h);
+            BackRects.add(new BackRect(rc,alt?128:255,true,getCount2(),height));
 
 
             l+=max;

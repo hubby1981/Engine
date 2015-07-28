@@ -10,7 +10,7 @@ public class ConstColor {
     public static int BLUE=150;
     public static int LAST=0;
 
-    public static String Level1="28101";
+    public static String Level1="26101";
     public static String Level2="10161";
     public static int Count1 =0;
     public static int Count2 =0;

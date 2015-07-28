@@ -2,10 +2,16 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fff"
-    tools:context=".MainActivity">
+    tools:context="com.games.bitworxx.engine.GameActivity">
 
-    <com.games.bitworxx.engine.MainMenu
+
+    <com.games.bitworxx.engine.ScrollBack
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:id="@+id/view"/>
+
+    <com.games.bitworxx.engine.Controls
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/viewControl"/>
 </RelativeLayout>

@@ -24,9 +24,10 @@ import java.util.ArrayList;
  */
 public class ScrollBack extends View {
 
-    public static  boolean GAME_OVER = false ;
-    BackDrawer BACK=new BackDrawer();
-    MaceDrawer MACE=new MaceDrawer();
+    public  boolean GAME_OVER = false ;
+    public boolean PLAY=false;
+    public BackDrawer BACK=new BackDrawer();
+    public MaceDrawer MACE=new MaceDrawer();
 
     Rect TOP;
     Rect BOTTOM;
@@ -34,18 +35,36 @@ public class ScrollBack extends View {
 
 
     private int MAX=8;
-    private boolean UPDATE=true;
+    public boolean UPDATE=true;
     public ScrollBack(Context context, AttributeSet attrs) {
         super(context, attrs);
 
     }
+    public void release()
+    {
+        if(BACK!=null)
+        {
+            BACK.UPDATE=false;
+            BACK.MOVEME=false;
+            BACK.Update.interrupt();
+            BACK.Update=null;
+        }
+        if(MACE!=null)
+        {
 
+            MACE.MOVEME=false;
+
+        }
+        UPDATE=false;
+    }
     @Override
     protected void onDraw(Canvas canvas)
     {
 
         if(UPDATE){
             UPDATE=false;
+
+
             TOP=new Rect(0,0,getWidth(),0+getHeight()/MAX);
             BOTTOM=new Rect(0,(0+getHeight())-getHeight()/MAX,getWidth(),0+getHeight());
 
@@ -57,7 +76,7 @@ public class ScrollBack extends View {
             BACK.onDraw(canvas, new Rect(0, 0, getWidth(), getHeight()));
 
             MACE.onDraw(canvas, new Rect(0, 0, getWidth(), BOTTOM.top), TOP.bottom);
-            MACE.move(10);
+            MACE.move(GameConst.MOVE_MACE);
             Paint Mace = new Paint();
             Mace.setColor(Color.BLACK);
             Mace.setStyle(Paint.Style.FILL);
@@ -65,15 +84,11 @@ public class ScrollBack extends View {
 
             canvas.drawRect(TOP, Mace);
             canvas.drawRect(BOTTOM, Mace);
+            if(!GAME_OVER && PLAY) {
+                String s = GameConst.GameCount < 10 ? "00" + String.valueOf(GameConst.GameCount) : GameConst.GameCount < 100 ? "0" + String.valueOf(GameConst.GameCount) : String.valueOf(GameConst.GameCount);
 
-            String s=GameConst.GameCount<10?"00"+ String.valueOf(GameConst.GameCount):GameConst.GameCount<100?"0"+ String.valueOf(GameConst.GameCount):String.valueOf(GameConst.GameCount);
-            Paint font = new Paint();
-            font.setColor( GameConst.FONT.getColor());
-            font.setStyle(Paint.Style.FILL);
-            font.setTextSize(TOP.height());
-            font.setTypeface(GameConst.FONT.getTypeface());
-            canvas.drawText(s, TOP.exactCenterX() - ((float) (s.length() / 1.8)) * font.getTextSize(), TOP.bottom - font.getTextSize() / 8, font);
-
+               FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT,canvas,s,new Rect(TOP.left+ TOP.width()/4, TOP.top,TOP.right-TOP.width()/4,TOP.bottom),0);
+            }
 
 
             UPDATE=true;
@@ -83,5 +98,17 @@ public class ScrollBack extends View {
 
     }
 
+    public boolean isInRect(int x,int y)
+    {
+        if(MACE!=null)
+            return MACE.isInRect(x,y);
+        return false;
+    }
+    public boolean isInRect(float x,float y)
+    {
+        if(MACE!=null)
+            return MACE.isInRect((int)x,(int)y);
+        return false;
+    }
 
 }

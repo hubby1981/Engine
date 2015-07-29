@@ -34,7 +34,7 @@ public class Controls extends View {
     public Controls(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
-public boolean CheckCollision=false;
+public boolean CheckCollision=true;
     public boolean IS_START=false;
 public Timer StartTimer=new Timer();
     public RectF ClickLeft;

@@ -18,7 +18,7 @@ public class MaceDrawer {
     Rect BOUNDS=null;
     public boolean MOVEME=true;
 
-    ArrayList<Spider> Spiders = new ArrayList<>();
+
 
     public void onDraw(Canvas canvas,Rect bounds,int t)
     {
@@ -30,8 +30,7 @@ public class MaceDrawer {
             for(int x=0;x<index;x++)
                 BackRects.get(x).onDraw(canvas,bounds);
 
-            for(Spider s:Spiders)
-                s.onDraw(canvas);
+
 
         }catch(Exception e){};
     }
@@ -70,6 +69,7 @@ public class MaceDrawer {
             BackRects.add(new BackRect(rc,alt?128:255,true,getCount2(),height));
 
 
+
             l+=max;
             alt=!alt;
         }
@@ -92,6 +92,12 @@ public class MaceDrawer {
         ConstColor.Count2++;
         return Integer.parseInt(result);
     }
+
+    public BackRect getTop(int index)
+    {
+        if(BackRects.size()<index)return null;
+        return BackRects.get(index);
+    }
     public void move(int move)
     {
         if(!MOVEME)return;
@@ -100,6 +106,8 @@ public class MaceDrawer {
             r.moveLeft(move);
 
         }
+
+
         BackRect r = BackRects.get(0);
         if(r.isInvisible())
         {
@@ -110,6 +118,7 @@ public class MaceDrawer {
             r.moveLeft(move);
             BackRects.remove(0);
             BackRects.add(r);
+
             GameConst.GameCount++;
         }
 

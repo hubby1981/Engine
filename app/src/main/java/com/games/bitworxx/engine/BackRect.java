@@ -8,6 +8,8 @@ import android.graphics.Rect;
 import com.games.bitworxx.engine.characters.GameConst;
 import com.games.bitworxx.engine.characters.Spider;
 
+import java.util.ArrayList;
+
 /**
  * Created by WEIS on 27.07.2015.
  */
@@ -23,6 +25,7 @@ public class BackRect {
     public int Height=0;
 
 
+
     public BackRect(Rect baseRect,int alpha,boolean isMace,int count,int height)
     {
         BaseRect = baseRect;
@@ -36,9 +39,13 @@ IsMace=isMace;
 
     }
 
+
+
     public void onDraw(Canvas canvas,Rect bounds)
     {
         Paint back = new Paint();
+
+
         if(!IsMace) {
             back.setColor(Color.WHITE);
             canvas.drawRect(BaseRect, back);
@@ -57,6 +64,7 @@ IsMace=isMace;
         }
         canvas.drawRect(BaseRect, back);
 
+
         back=null;
     }
 
@@ -71,6 +79,9 @@ IsMace=isMace;
 
     public boolean isInvisible()
     {
+
+
+
         return BaseRect.right<=0;
     }
 

@@ -22,6 +22,7 @@ import com.games.bitworxx.engine.characters.Locust;
 import com.games.bitworxx.engine.characters.Spider;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -33,7 +34,7 @@ public class Controls extends View {
     public Controls(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
-public boolean CheckCollision=true;
+public boolean CheckCollision=false;
     public boolean IS_START=false;
 public Timer StartTimer=new Timer();
     public RectF ClickLeft;
@@ -54,7 +55,6 @@ public Timer StartTimer=new Timer();
     Rect TOP =null;
             Rect BOTTOM=null;
 
-    ArrayList<Spider> Spiders=new ArrayList<>();
     @Override
     protected void onDraw(Canvas canvas) {
 if(UPDATE) {
@@ -87,6 +87,8 @@ if(UPDATE) {
         circle.setColor(Color.argb(200, 150, 150, 150));
         circle.setStyle(Paint.Style.FILL);
 
+
+
         Paint power = new Paint();
         power.setColor(Color.argb(225, 200, 170, 0));
         power.setStyle(Paint.Style.FILL_AND_STROKE);
@@ -102,6 +104,8 @@ if(UPDATE) {
             canvas.drawArc(ClickRight, 0, 360, true, power);
         else
             canvas.drawArc(ClickRight, 0, 360, true, circle);
+
+
 
 
         RectF middle2 = new RectF(ClickMiddle.left + ClickMiddle.width() / 6, ClickMiddle.top + ClickMiddle.height() / 6, ClickMiddle.right - ClickMiddle.width() / 6, ClickMiddle.bottom - ClickMiddle.height() / 6);

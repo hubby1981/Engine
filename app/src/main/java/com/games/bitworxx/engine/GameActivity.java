@@ -46,6 +46,9 @@ public class GameActivity extends Activity {
                 if (getBack().GAME_OVER && !getControl().IS_START)
                     Updater.cancel();
                 findViewById(R.id.viewControl).invalidate();
+
+                findViewById(R.id.viewSpider).invalidate();
+
             }
         });
     }
@@ -92,5 +95,8 @@ public void startUpdater()
     {
         return (Controls)findViewById(R.id.viewControl);
     }
-
+    public Spiders getSpider()
+    {
+        return (Spiders)findViewById(R.id.viewSpider);
+    }
 }

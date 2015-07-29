@@ -62,6 +62,15 @@ public class ScrollBack extends View {
     {
         return ((GameActivity) getContext()).getControl();
     }
+    public Spiders getSpiders()
+    {
+        return ((GameActivity) getContext()).getSpider();
+    }
+
+    public BackRect getMaceRect(int index)
+    {
+        return MACE.getTop(index);
+    }
     @Override
     protected void onDraw(Canvas canvas)
     {
@@ -84,7 +93,10 @@ public class ScrollBack extends View {
             if(!GAME_OVER&&!getControls().ThisChar.IsDead)
                 MACE.onDraw(canvas, new Rect(0, 0, getWidth(), BOTTOM.top), TOP.bottom);
 
-            MACE.move(GameConst.MOVE_MACE);
+            if(!GAME_OVER&&!getControls().IS_START) {
+                MACE.move(GameConst.MOVE_MACE);
+                getSpiders().onMove(GameConst.MOVE_MACE);
+            }
             Paint Mace = new Paint();
             Mace.setColor(Color.BLACK);
             Mace.setStyle(Paint.Style.FILL);

@@ -53,6 +53,8 @@ public class GameActivity extends Activity {
     @Override
     public void onBackPressed() {
 
+        MainActivity.MP.setVolume(0f,0f);
+
         ScrollBack b = getBack();
         Updater.cancel();
         b.GAME_OVER=true;

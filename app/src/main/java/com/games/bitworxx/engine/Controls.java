@@ -19,6 +19,7 @@ import com.games.bitworxx.engine.characters.BaseCharacter;
 import com.games.bitworxx.engine.characters.Fly;
 import com.games.bitworxx.engine.characters.GameConst;
 import com.games.bitworxx.engine.characters.Locust;
+import com.games.bitworxx.engine.characters.Spider;
 
 import java.util.ArrayList;
 import java.util.Timer;
@@ -52,6 +53,8 @@ public Timer StartTimer=new Timer();
     public boolean UPDATE=true;
     Rect TOP =null;
             Rect BOTTOM=null;
+
+    ArrayList<Spider> Spiders=new ArrayList<>();
     @Override
     protected void onDraw(Canvas canvas) {
 if(UPDATE) {
@@ -73,6 +76,9 @@ if(UPDATE) {
 
     float left1 = (BOTTOM.centerX() - w) - w / 8;
     ClickMiddle = new RectF(left1 + w / max, (getBottom() + w / 2) - w * max, left1 + w * max, (getBottom() + w / 2) - w / max);
+
+
+
 
     if(!getBack().GAME_OVER) {
 
@@ -115,6 +121,12 @@ if(UPDATE) {
         ThisChar.onDraw(canvas);
         checkCollision();
     }
+    else
+    {
+        if(!IS_START)
+            ThisChar.onDraw(canvas);
+
+    }
 
 
     if (IS_START) {
@@ -128,6 +140,8 @@ if(UPDATE) {
 
     if (getBack().GAME_OVER && !IS_START&&!getBack().PLAY)
     {
+        ThisChar.IsDead=true;
+        ThisChar.onDraw(canvas);
         drawOver(canvas);
 
     }
@@ -152,12 +166,16 @@ if(UPDATE) {
             }
 
             if(isDead)
+            {
                 DEAD_BY="bam!!! u feel the block?";
+                MainActivity.MP_PONG.start();
+            }
             else
                 DEAD_BY="tasty spider candy - yam yam";
 
 
             if (isDead) {
+                ThisChar.IsDead=true;
                 getBack().PLAY = false;
                 getBack().GAME_OVER = true;
                 if(MainActivity.readBest(GameConst.MyChar.getCode())<GameConst.GameCount)
@@ -188,7 +206,7 @@ if(UPDATE) {
             public void run() {
 
                 INDEX--;
-
+                MainActivity.MP_UP.start();
                 if(INDEX==0)
                 {
                     IS_START=false;
@@ -200,6 +218,7 @@ if(UPDATE) {
 
     public void startGame()
     {
+
         TimeStart=SystemClock.elapsedRealtime();
         if(StartTimer!=null)
             StartTimer.cancel();
@@ -268,25 +287,26 @@ if(UPDATE) {
         back1.setColor(Color.argb(75, 50, 50, 50));
         back1.setStyle(Paint.Style.FILL);
         //canvas.drawRect(getBounds(), back1);
-        int alpha=200;
+        int alpha=220;
         Paint back3 = new Paint();
+        int hm=15;
 
-        back3.setColor(Color.argb(alpha+30, 110,160,180));
+        back3.setColor(Color.argb(alpha+hm,50, 150,150));
         back3.setStyle(Paint.Style.FILL);
 
         Paint back2 = new Paint();
 
-        back2.setColor(Color.argb(alpha-30,110,160,180));
+        back2.setColor(Color.argb(alpha-hm,50,50,150));
         back2.setStyle(Paint.Style.FILL);
 
         Paint back5 = new Paint();
 
-        back5.setColor(Color.argb(alpha+30,110,160,180));
+        back5.setColor(Color.argb(alpha+hm,50,150,150));
         back5.setStyle(Paint.Style.FILL);
 
         Paint back4 = new Paint();
 
-        back4.setColor(Color.argb(alpha-30,110,160,180));
+        back4.setColor(Color.argb(alpha-hm,50,50,150));
         back4.setStyle(Paint.Style.FILL);
 
 
@@ -373,11 +393,11 @@ if(!getBack().GAME_OVER){
                 if (ClickLeft.contains(event.getX(), event.getY())) {
 
                     FLYX = 1;
-                    FLYY = 0;
+                    FLYY = 0;     MainActivity.MP_UP.start();
 
                 }else if (ClickRight.contains(event.getX(), event.getY())) {
                     FLYY = 1;
-                    FLYX = 0;
+                    FLYX = 0;MainActivity.MP_UP.start();
 
                 }
                 else if (ClickMiddle.contains(event.getX(), event.getY())) {

@@ -9,6 +9,7 @@ public class TXT {
     public static String KEY_BEST="BEST";
     public static String KEY_HIGH="HIGH";
     public static String KEY_CHAR="CHAR";
+    public static String KEY_BUY="BUY";
 
 
 }

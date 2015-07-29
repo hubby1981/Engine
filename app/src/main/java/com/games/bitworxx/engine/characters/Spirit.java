@@ -21,7 +21,7 @@ public class Spirit extends BaseCharacter {
         BackColor= GameConst.BACK_CHAR4_NORMAL;
         FlyColor= GameConst.BACK_CHAR4_FLY;
         Name="Little Spirit";
-        StoreProduct="buychar4";
+        StoreProduct="buychar5";
     }
 
     @Override
@@ -36,10 +36,16 @@ public class Spirit extends BaseCharacter {
 
     @Override
     public boolean isLocked() {
-
+        if(MainActivity.readBuy(getCode())>0)
+            return false;
         if(MainActivity.readBest(4)>750)
             return false;
         return true;
+    }
+
+    @Override
+    public String getUnlockText() {
+        return "to unlock WLittle Spirit score 750 with Budda Fly";
     }
 
     @Override

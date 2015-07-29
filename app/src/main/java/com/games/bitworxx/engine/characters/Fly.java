@@ -20,7 +20,10 @@ public class Fly extends BaseCharacter {
         FlyColor= GameConst.BACK_CHAR0_FLY;
         Name="Arty McFly";
     }
-
+    @Override
+    public String getUnlockText() {
+        return "is unlocked";
+    }
     @Override
     public BaseCharacter getCopy() {
         return new Fly();

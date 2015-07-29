@@ -95,7 +95,7 @@ UPDATE=true;
             BackRects.remove(0);
             BackRects.add(r);
             LAST++;
-            if(LAST>=50)
+            if(LAST>=50&&GameConst.ChangeColor)
             {
                 LAST=0;
                 ConstColor.setRandom();

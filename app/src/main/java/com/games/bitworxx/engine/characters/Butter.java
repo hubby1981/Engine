@@ -20,7 +20,7 @@ public class Butter extends BaseCharacter {
         BackColor= GameConst.BACK_CHAR3_NORMAL;
         FlyColor= GameConst.BACK_CHAR3_FLY;
         Name = "Budda Fly";
-        StoreProduct="buychar3";
+        StoreProduct="buychar4";
     }
 
     @Override
@@ -114,7 +114,8 @@ public class Butter extends BaseCharacter {
     }
     @Override
     public boolean isLocked() {
-
+        if(MainActivity.readBuy(getCode())>0)
+            return false;
         if(MainActivity.readBest(3)>500)
             return false;
         return true;
@@ -135,5 +136,10 @@ public class Butter extends BaseCharacter {
         int y=16;
         X+= RandomRange.getRandom(-x, y);
         Y+=RandomRange.getRandom(-x,y);
+    }
+
+    @Override
+    public String getUnlockText() {
+        return "to unlock Budda Fly score 500 with Wanna Bee";
     }
 }

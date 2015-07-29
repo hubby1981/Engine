@@ -24,6 +24,11 @@ public class Spider extends BaseCharacter {
     public int OWN_DOWN=0;
     private int LAST=0;
     private boolean Main = false;
+
+    @Override
+    public String getUnlockText() {
+        return "is unlocked";
+    }
     @Override
     public void setup() {
         BackColor= GameConst.BACK_SPIDER_NORMAL;

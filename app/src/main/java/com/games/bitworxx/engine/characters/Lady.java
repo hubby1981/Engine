@@ -20,7 +20,7 @@ public class Lady extends BaseCharacter {
         BackColor= GameConst.BACK_CHAR5_NORMAL;
         FlyColor= GameConst.BACK_CHAR5_FLY;
         Name="Lady Bug";
-        StoreProduct="buychar5";
+        StoreProduct="buychar3";
     }
 
     @Override
@@ -35,10 +35,15 @@ public class Lady extends BaseCharacter {
 
     @Override
     public boolean isLocked() {
-
+        if(MainActivity.readBuy(getCode())>0)
+            return false;
         if(MainActivity.readBest(5)>999)
             return false;
         return true;
+    }
+    @Override
+    public String getUnlockText() {
+        return "to unlock Lady Bug score 999 with Little Spirit";
     }
 
     @Override

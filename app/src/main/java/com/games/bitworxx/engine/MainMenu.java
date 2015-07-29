@@ -1,6 +1,7 @@
 package com.games.bitworxx.engine;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -31,10 +32,13 @@ public class MainMenu extends View {
     private int TheChar;
     private int MaxChar=6;
     private Rect ClickPlay;
+    private Rect ClickHow;
+
     private Rect ClickSelect1;
     private Rect ClickSelect2;
     private Rect ClickBuy;
-    private Rect ClickRate;
+    private Rect ClickShop;
+    private Rect ClickOpt;
     private Rect ClickHelp;
 
     private Rect ClickClose;
@@ -101,10 +105,17 @@ public Rect getBounds()
         paintStrokeButton.setColor(GameConst.MACE_COLOR);
 
         ClickPlay = getCombinedSmall(main.get(3));
+        ClickHow = getCombinedSmall(main.get(3));
+        ClickHow.left=ClickPlay.right+(getWidth()/100)*2;
+        ClickHow.right=ClickHow.left+ClickPlay.width()+(getWidth()/100)*4;
 
         canvas.drawRect(ClickPlay, paintButton);
         canvas.drawRect(ClickPlay, paintStrokeButton);
+        paintButton.setColor(Color.argb(200, 190, 100, 60));
 
+        canvas.drawRect(ClickHow, paintButton);
+        canvas.drawRect(ClickHow, paintStrokeButton);
+        paintButton.setColor(Color.argb(200, 180, 210, 180));
 
 
         FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, title, main.get(0), 0);
@@ -140,47 +151,78 @@ public Rect getBounds()
         GameConst.MyChar.onDraw(canvas);
         if(GameConst.MyChar.isLocked())
         {
-            ArrayList<Rect> chars = RectHandler.getGrid(3,1,RectHandler.combineRects(select.get(2),select.get(4)));
-            Rect charLocked = RectHandler.combineRects(chars.get(0),chars.get(1));
+            ArrayList<Rect> chars = RectHandler.getGrid(4, 1, RectHandler.combineRects(select.get(2), select.get(4)));
+            Rect charLocked = RectHandler.combineRects(chars.get(1),chars.get(3));
 
-            GameConst.FONT.setColor(GameConst.EYE_COLOR);
+            //GameConst.FONT.setColor(GameConst.EYE_COLOR);
 
             Paint locked = new Paint();
-            locked.setColor(Color.argb(200,200,0,0));
-            locked.setStyle(Paint.Style.FILL);
+            locked.setColor(Color.argb(128, 200, 0, 0));
+            locked.setStyle(Paint.Style.STROKE);
+            locked.setStrokeWidth(GameConst.MyChar.Size/4);
+            //canvas.drawRect(charLocked, locked);
+            //canvas.drawRect(charLocked, paintStrokeButton);
 
-            canvas.drawRect(charLocked, locked);
-            canvas.drawRect(charLocked, paintStrokeButton);
+            float ap1 =GameConst.MyChar.X-(GameConst.MyChar.Size);
+            float ap2=GameConst.MyChar.Y-(GameConst.MyChar.Size);
+            float ap3 = GameConst.MyChar.X+(GameConst.MyChar.Size*2);
+            float ap4 = GameConst.MyChar.Y+(GameConst.MyChar.Size*2);
 
-            FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, "LOCKED", charLocked, 0);
+            float aap=GameConst.MyChar.Size/2;
+            ap1+=aap;
+            ap2+=aap;
+            ap3-=aap;
+            ap4-=aap;
+
+            canvas.drawArc(ap1, ap2, ap3, ap4, 0, 360, true, locked);
+
+            //FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, "LOCKED", charLocked, 0);
+            canvas.drawLine(ap1+aap/2,ap2+aap/2,ap3-aap/2,ap4-aap/2,locked);
             GameConst.FONT.setColor(GameConst.MACE_COLOR);
 
-            ClickBuy = getCombinedMiddle(main.get(6));
+            ClickBuy = new Rect(0,main.get(6).top,getWidth(),main.get(6).bottom);
 
-            canvas.drawRect(ClickBuy, paintButton);
-            canvas.drawRect(ClickBuy, paintStrokeButton);
-            FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, "Buy unlock", ClickBuy, 0);
+
+            FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas,GameConst.MyChar.getUnlockText(), ClickBuy, 0);
+            FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas,"You can buy the flyer in shop to unlock it", new Rect(0,main.get(6).top,getWidth(),main.get(6).bottom), 3);
+
 
         }
 
         FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, "Play", ClickPlay, 0);
+        GameConst.FONT.setColor(GameConst.EYE_COLOR);
+
+        FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, "TUTORIAL", ClickHow, 0);
+        GameConst.FONT.setColor(GameConst.MACE_COLOR);
+
+
         Rect button = getCombinedMiddle(main.get(7));
 
-        ArrayList<Rect> buttons = RectHandler.getGrid(1,2,button);
-        ClickRate=buttons.get(0);
-        ClickClose=buttons.get(1);
-        int ww = ClickRate.width()/4;
-        ClickRate.right-=ww;
-        ClickClose.right+=ww;
-        ClickClose.left+=ww;
-        ClickRate.left-=ww;
-        canvas.drawRect( ClickRate, paintButton);
-        canvas.drawRect( ClickRate, paintStrokeButton);
-        FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, "HOW TO", ClickRate, 0);
+        ArrayList<Rect> buttons = RectHandler.getGrid(1,3,new Rect(0,button.top,getWidth(),button.bottom));
+        ClickShop =buttons.get(0);
+        ClickOpt=buttons.get(1);
+        ClickClose=buttons.get(2);
+
+        ClickShop.left+=getWidth()/100;
+        ClickShop.right-=getWidth()/100;
+
+        ClickClose.left+=getWidth()/100;
+        ClickClose.right-=getWidth()/100;
+        paintButton.setColor(Color.argb(200, 60, 60, 180));
+
+        canvas.drawRect(ClickShop, paintButton);
+        paintButton.setColor(Color.argb(200, 180, 210, 180));
+        GameConst.FONT.setColor(GameConst.EYE_COLOR);
+        canvas.drawRect(ClickShop, paintStrokeButton);
+        FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, "SHOP", ClickShop, 0);
+        GameConst.FONT.setColor(GameConst.MACE_COLOR);
+
+        canvas.drawRect( ClickOpt, paintButton);
+        canvas.drawRect( ClickOpt, paintStrokeButton);
+        FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, "Options", ClickOpt, 0);
         canvas.drawRect( ClickClose, paintButton);
         canvas.drawRect( ClickClose, paintStrokeButton);
         FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, "Close", ClickClose, 0);
-
 
         GameConst.FONT.setColor(GameConst.EYE_COLOR);
         GameConst.FONT.setTextSize(oldSize);
@@ -259,8 +301,13 @@ public Rect getBounds()
         }
 
             if(ClickClose.contains((int)event.getX(),(int)event.getY()))
+        {
+            System.exit(0);
+        }
+
+            if(ClickShop.contains((int)event.getX(),(int)event.getY()))
             {
-                System.exit(0);
+               MainActivity.Shop.run();
             }
         }
         return true;

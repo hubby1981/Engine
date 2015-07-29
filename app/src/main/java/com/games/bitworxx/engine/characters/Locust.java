@@ -22,7 +22,10 @@ public class Locust extends BaseCharacter {
         Name = "Lolo Locust";
         StoreProduct="buychar1";
     }
-
+    @Override
+    public String getUnlockText() {
+        return "to unlock Lolo Locust score 25 with Arty McFly";
+    }
     @Override
     public int getMouth() {
         return 5;
@@ -61,7 +64,8 @@ public class Locust extends BaseCharacter {
 
     @Override
     public boolean isLocked() {
-
+        if(MainActivity.readBuy(getCode())>0)
+            return false;
         if(MainActivity.readBest(1)>25)
             return false;
         return true;

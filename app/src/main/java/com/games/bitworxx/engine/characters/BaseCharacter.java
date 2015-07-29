@@ -257,4 +257,6 @@ protected  String StoreProduct;
 
 
     }
+
+    public abstract String getUnlockText();
 }

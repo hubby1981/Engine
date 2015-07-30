@@ -98,6 +98,13 @@ public class ScrollBack extends View {
                 getSpiders().onMove(GameConst.MOVE_MACE);
                 if(rm){
                     getSpiders().doSpider(1);
+                    GameConst.LGameCount++;
+                    if(GameConst.LGameCount>10)
+                    {
+                        GameConst.LGameCount=0;
+                        GameConst.MOVE_MACE+=1;
+                        GameConst.MOVE_BACK+=1;
+                    }
                 }
             }
             Paint Mace = new Paint();

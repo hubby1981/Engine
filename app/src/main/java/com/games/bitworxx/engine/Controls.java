@@ -34,7 +34,7 @@ public class Controls extends View {
     public Controls(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
-public boolean CheckCollision=false;
+public boolean CheckCollision=true;
     public boolean IS_START=false;
 public Timer StartTimer=new Timer();
     public RectF ClickLeft;
@@ -168,15 +168,27 @@ if(UPDATE) {
                 if(!isDead)
                     isDead=BOTTOM.contains(p.x,p.y);
             }
-
             if(isDead)
             {
                 DEAD_BY="bam!!! u feel the block?";
                 MainActivity.MP_PONG.start();
             }
-            else
-                DEAD_BY="tasty spider candy - yam yam";
 
+            if(!isDead)
+            {
+                ArrayList<Spider> sp = getSpiders().Spiders;
+                if(sp!=null&&sp.size()>0)
+                {
+                    for(Spider s : sp)
+                        if(!isDead)
+                            isDead = s.isInRect(ThisChar.getBody());
+                }
+            }
+
+            if(isDead)
+            {
+                DEAD_BY="tasty spider candy - yam yam";
+            }
 
             if (isDead) {
                 ThisChar.IsDead=true;
@@ -234,6 +246,10 @@ if(UPDATE) {
 
     }
 
+    public Spiders getSpiders()
+    {
+        return ((GameActivity) getContext()).getSpider();
+    }
 
     public ScrollBack getBack()
     {

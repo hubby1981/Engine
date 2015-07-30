@@ -57,13 +57,13 @@ public class Spiders extends View {
                     int si = GameConst.MyChar.Size;
 
                     int ss = RandomRange.getRandom(1,5);
-                    if(ss==1)si*=0.6;
-                    if(ss==2)si*=0.8;
-                    if(ss==3)si*=1;
-                    if(ss==4)si*=1.2;
-                    if(ss==5)si*=1.4;
+                    if(ss==1)si*=0.8;
+                    if(ss==2)si*=1;
+                    if(ss==3)si*=1.2;
+                    if(ss==4)si*=1.4;
+                    if(ss==5)si*=1.6;
                     Spider s = new Spider(RandomRange.getRandom(rr.BaseRect.left + si, rr.BaseRect.right - si), rr.BaseRect.bottom + RandomRange.getRandom(getHeight() / 20, getHeight() / 10), null, false);
-                    s.Net = new Rect(s.X,rr.BaseRect.bottom,s.X+si,rr.BaseRect.bottom);
+                    s.Net = new Rect(s.X,rr.BaseRect.bottom-si,s.X+si,rr.BaseRect.bottom+si/4);
                     s.OWN_DOWN = RandomRange.getRandom(getHeight() / 100, getHeight() / 50);
                     s.Size = si;
                     Spiders.add(s);

@@ -13,7 +13,7 @@ public class GameConst {
 
     public static int SIZE=10;
 
-    public static int MACE_COLOR= Color.DKGRAY;
+    public static int MACE_COLOR= Color.argb(255,100,100,100);
     public static int UP_SPIDER=20;
     public static int UP_SPIDER_PERIOD=20;
     public static int UP_SPIDER2=10;

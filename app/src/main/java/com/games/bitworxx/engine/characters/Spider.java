@@ -105,6 +105,7 @@ public class Spider extends BaseCharacter {
     public void onDrawOther(Canvas canvas, Paint back) {
 
         Rect body = getBody();
+        back.setColor(GameConst.MACE_COLOR);
         int h = body.height()/8;
         int w = body.width()/2;
 
@@ -122,6 +123,28 @@ public class Spider extends BaseCharacter {
         }
 
 
+        if(Net!=null)
+        {
+
+            Paint line = new Paint();
+            line.setColor(GameConst.MACE_COLOR);
+            line.setStyle(Paint.Style.STROKE);
+
+            line.setStrokeWidth(2);
+            canvas.drawLine(body.exactCenterX(),body.exactCenterY(),Net.exactCenterX(),Net.exactCenterY(),line);
+
+
+            int hm = (Net.height() / 2) / 3;
+            int yl = (int) Net.exactCenterY() + hm + hm / 2;
+
+            canvas.drawLine(Net.exactCenterX() - hm, yl, Net.exactCenterX(), yl + hm, line);
+            canvas.drawLine(Net.exactCenterX() + hm, yl, Net.exactCenterX(), yl + hm, line);
+            canvas.drawLine(Net.exactCenterX() - hm * 2, yl, Net.exactCenterX(), yl + hm * 2, line);
+            canvas.drawLine(Net.exactCenterX() + hm * 2, yl, Net.exactCenterX(), yl + hm * 2, line);
+            canvas.drawLine(Net.exactCenterX() - hm * 3, yl, Net.exactCenterX(), yl + hm * 3, line);
+            canvas.drawLine(Net.exactCenterX() + hm * 3, yl, Net.exactCenterX(), yl + hm * 3, line);
+
+        }
 
         Rect left1 = new Rect((body.left-w)+alt2,body.centerY()-h*3,body.left,(body.centerY()-h*3)+h);
         Rect left2 = new Rect((body.left-w)+alt1,left1.bottom+h/2,left1.right,left1.bottom+h/2+h);
@@ -158,28 +181,7 @@ public class Spider extends BaseCharacter {
         canvas.drawRect(up1,back);
         canvas.drawRect(up2,back);
 
-        if(Net!=null)
-        {
 
-            Paint line = new Paint();
-            line.setColor(back.getColor());
-            line.setStyle(Paint.Style.STROKE);
-
-            line.setStrokeWidth(2);
-         canvas.drawLine(body.exactCenterX(),body.exactCenterY(),Net.exactCenterX(),Net.exactCenterY(),line);
-
-            if(Main) {
-                int hm = (Net.height() / 2) / 3;
-                int yl = (int) Net.exactCenterY() + hm + hm / 2;
-
-                canvas.drawLine(Net.exactCenterX() - hm, yl, Net.exactCenterX(), yl + hm, line);
-                canvas.drawLine(Net.exactCenterX() + hm, yl, Net.exactCenterX(), yl + hm, line);
-                canvas.drawLine(Net.exactCenterX() - hm * 2, yl, Net.exactCenterX(), yl + hm * 2, line);
-                canvas.drawLine(Net.exactCenterX() + hm * 2, yl, Net.exactCenterX(), yl + hm * 2, line);
-                canvas.drawLine(Net.exactCenterX() - hm * 3, yl, Net.exactCenterX(), yl + hm * 3, line);
-                canvas.drawLine(Net.exactCenterX() + hm * 3, yl, Net.exactCenterX(), yl + hm * 3, line);
-            }
-        }
     }
 
     @Override

@@ -28,7 +28,12 @@
         </activity>
         <activity
             android:name=".ShopActivity"
-            android:label="@string/title_activity_shop" android:screenOrientation="userPortrait" >
+            android:label="@string/title_activity_shop"
+            android:screenOrientation="userPortrait" >
+        </activity>
+        <activity
+            android:name=".SplashActivity"
+            android:label="@string/title_activity_splash" >
         </activity>
     </application>
 

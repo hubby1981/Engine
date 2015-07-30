@@ -67,7 +67,14 @@ public class MainActivity extends Activity {
             }
         };
 
+        startSplash();
+    }
 
+
+    public void startSplash()
+    {
+        Intent t = new Intent(this,SplashActivity.class);
+        startActivity(t);
     }
     @Override
     public void onBackPressed() {
@@ -260,5 +267,8 @@ public class MainActivity extends Activity {
         edit.putInt(TXT.KEY_BUY+String.valueOf(code), buy);
         edit.commit();
     }
+
+
+
 
 }

@@ -10,7 +10,7 @@ import android.graphics.Rect;
  */
 public class ColorTapet {
 
-    public static int MAX=(int)(255/1.5);
+    public static int MAX=(int)(255/2);
     public static int LOW=MAX/2;
     public static int RED=50;
     public static int GREEN=150;

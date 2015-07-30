@@ -78,7 +78,11 @@ if(UPDATE) {
     ClickMiddle = new RectF(left1 + w / max, (getBottom() + w / 2) - w * max, left1 + w * max, (getBottom() + w / 2) - w / max);
 
 
-
+    Paint black = new Paint();
+    black.setColor(Color.BLACK);
+    black.setStyle(Paint.Style.FILL);
+    //canvas.drawRect(TOP,black);
+    canvas.drawRect(BOTTOM,black);
 
     if(!getBack().GAME_OVER) {
 
@@ -95,6 +99,9 @@ if(UPDATE) {
 
         power.setAntiAlias(true);
         power.setStrokeWidth(TOP.width() / 80);
+        if(!IS_START && !getBack().GAME_OVER)
+            canvas.drawArc(ClickMiddle, 0, GameConst.POWER, true, power);
+
         canvas.drawArc(ClickMiddle, 0, 360, true, circle);
         if (FLYX == 1)
             canvas.drawArc(ClickLeft, 0, 360, true, power);
@@ -123,10 +130,11 @@ if(UPDATE) {
     if (!getBack().GAME_OVER && !ThisChar.IsDead) {
         ThisChar.animateSink(FLYX, FLYY);
         ThisChar.onDraw(canvas);
-        checkCollision();
+        if(ThisChar.HeroActive==0)
+            checkCollision();
     }
     else
-    {
+        {
         if(!IS_START)
             ThisChar.onDraw(canvas);
 
@@ -149,6 +157,8 @@ if(UPDATE) {
         drawOver(canvas);
 
     }
+
+
 }
     }
 
@@ -176,6 +186,7 @@ if(UPDATE) {
 
             if(!isDead)
             {
+                boolean old = isDead;
                 ArrayList<Spider> sp = getSpiders().Spiders;
                 if(sp!=null&&sp.size()>0)
                 {
@@ -183,12 +194,14 @@ if(UPDATE) {
                         if(!isDead)
                             isDead = s.isInRect(ThisChar.getBody());
                 }
+
+                if(!old&&isDead)
+                {
+                    DEAD_BY="tasty spider candy - yam yam";
+                }
             }
 
-            if(isDead)
-            {
-                DEAD_BY="tasty spider candy - yam yam";
-            }
+
 
             if (isDead) {
                 ThisChar.IsDead=true;
@@ -243,7 +256,7 @@ if(UPDATE) {
 
         GameConst.GameCount=0;
         GameConst.LGameCount=0;
-
+        GameConst.POWER=0;
     }
 
     public Spiders getSpiders()
@@ -422,7 +435,10 @@ if(!getBack().GAME_OVER){
 
                 }
                 else if (ClickMiddle.contains(event.getX(), event.getY())) {
-
+                    if(!ThisChar.IsDead&&GameConst.POWER>=360) {
+                        GameConst.POWER = 1;
+                        ThisChar.HeroActive=100;
+                    }
 
                 }}else
 {

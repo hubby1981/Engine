@@ -23,9 +23,11 @@ public class MainActivity extends Activity {
 
     public static Runnable Update;
     public static Runnable Start;
+    public static Runnable Tutorial;
+    public static Runnable Options;
 
     public static String KEY="MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsL4Tq2tCeqRkdk6rhHiY3SakvlWAqgCws4ZIM34Z5UCFB2g2DtL851UU6lODrMe7lVcIJyxrW15fOQTM8YPaHaldo0xCi6qxfpkLvC0sxYo/OkF8OU31g+NNV/+7h9CF7uytvlJkF4dyE/ay0TKSxsnOmM8QBbIb8FftifTJVGR6L8HiQbIZRsKYWDteZ2yGKxIrnUjQ6rZeDOK1CGFf2SP4yygjkFH1SIHETWzEopu6JcgiR4P7DGg5bUvkIwV5K9fnwTDydbCh/tOQXPxPGf8rhKMHz7iMSZ1/9kfwK6SAgehStvC+uhshRhkEoxGV4JYELqi5kSV2luJKiHJQSQIDAQAB";
-
+    public static String KEY2="UA-65112560-2";
     public static SharedPreferences Preferences;
     private static GameConst GM;
     public static MediaPlayer MP=new MediaPlayer();
@@ -66,14 +68,37 @@ public class MainActivity extends Activity {
                 startShop();
             }
         };
+        Tutorial=new Runnable() {
+            @Override
+            public void run() {
+                startTutorial();
+            }
+        };
+        Options=new Runnable() {
+            @Override
+            public void run() {
+                startOptions();
+            }
+        };
 
         startSplash();
+
     }
 
 
     public void startSplash()
     {
         Intent t = new Intent(this,SplashActivity.class);
+        startActivity(t);
+    }
+    public void startOptions()
+    {
+        Intent t = new Intent(this,OptionsActivity.class);
+        startActivity(t);
+    }
+    public void startTutorial()
+    {
+        Intent t = new Intent(this,TutorialActivity.class);
         startActivity(t);
     }
     @Override

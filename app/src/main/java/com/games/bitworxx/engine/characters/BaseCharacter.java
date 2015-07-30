@@ -2,6 +2,7 @@ package com.games.bitworxx.engine.characters;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Point;
@@ -35,6 +36,8 @@ protected  String StoreProduct;
     public boolean IsDead=false;
     public boolean IsAnimated=true;
     private Timer Animate=null;
+    public int HeroActive=0;
+    public boolean BHeroActive=false;
 
     public BaseCharacter(){
         this(0, 0);
@@ -98,9 +101,24 @@ protected  String StoreProduct;
     {
         Paint back = new Paint();
         back.setStyle(Paint.Style.FILL);
-        back.setColor(BackColor);
+        if(HeroActive>0) {
+            if (HeroActive < 40) {
+                if (!BHeroActive)
+                    back.setColor(Color.argb(255, 200, 100, 0));
+                else
+                    back.setColor(BackColor);
+                BHeroActive = !BHeroActive;
+            }
+            else
+                back.setColor(Color.argb(255, 200, 100, 0));
+        }
+        else
+            back.setColor(BackColor);
 
 
+        HeroActive-=1;
+        if(HeroActive<0)
+            HeroActive=0;
         Rect body = getBody();
         if(!IsDead) {
             int x1 = Size / 6;

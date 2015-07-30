@@ -24,7 +24,7 @@ public class GameConst {
     public static int MOVE_BACK=20;
     public static int MOVE_MACE=20;
     public static boolean ChangeColor=false;
-
+public static int POWER=0;
     public static float PEROID_FACTOR=(float)0.5;
     public static int BACK_CHAR0_NORMAL = Color.argb(255,100,100,100);
     public static int BACK_CHAR0_FLY = Color.argb(128,100,100,100);

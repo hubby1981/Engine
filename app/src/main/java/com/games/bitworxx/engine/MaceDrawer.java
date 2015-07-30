@@ -120,7 +120,8 @@ public class MaceDrawer {
             BackRects.add(r);
 
             GameConst.GameCount++;
-
+            if(GameConst.POWER<360)
+                GameConst.POWER+=36*2;
             return true;
         }
 

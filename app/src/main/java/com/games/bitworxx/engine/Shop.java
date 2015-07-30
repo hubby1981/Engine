@@ -126,12 +126,12 @@ public class Shop extends View {
         ll.onDraw(canvas);
         GameConst.FONT.setColor(GameConst.EYE_COLOR);
 
-        float buyStorePrice1=0.99f;
-        float buyStorePrice2=0.99f;
-        float buyStorePrice3=1.49f;
-        float buyStorePrice4=1.99f;
-        float buyStorePrice5=2.49f;
-        float buyStorePrice6=4.99f;
+        String buyStorePrice1="load price";
+        String buyStorePrice2="load price";
+        String buyStorePrice3="load price";
+        String buyStorePrice4="load price";
+        String buyStorePrice5="load price";
+        String buyStorePrice6="load price";
 
         FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, l.Name, RectHandler.combineRects(rectsBuy1.get(2), rectsBuy1.get(5)), 1);
         FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, b.Name, RectHandler.combineRects(rectsBuy2.get(2),           rectsBuy2.get(5)),   1);
@@ -153,16 +153,18 @@ public class Shop extends View {
         String ss2="already unlocked";
 int other=0;
         if(MainActivity.readBuy(l.getCode())==0&&l.isLocked()) {
-        canvas.drawRect(Buy1, paintButton);
-        canvas.drawRect(Buy1, paintStrokeButton);
-        FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, ss1, Buy1, 0);
-            FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, String.valueOf(buyStorePrice1), RectHandler.combineRects(rectsBuy1.get(3),      rectsBuy1.get(4)),   0);
+            canvas.drawRect(Buy1, paintButton);
+            canvas.drawRect(Buy1, paintStrokeButton);
+            FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, ss1, Buy1, 0);
+
+
+            FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, ShopActivity.Price1 != null ? ShopActivity.Price1 : buyStorePrice1, RectHandler.combineRects(rectsBuy1.get(3), rectsBuy1.get(4)), 0);
             other++;
         }
         else
         {
             FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, ss2, RectHandler.combineRects(rectsBuy1.get(2),      rectsBuy1.get(6)),   0);
-
+            Buy1=null;
         }
 
         if(MainActivity.readBuy(b.getCode())==0 && b.isLocked()) {
@@ -170,13 +172,14 @@ int other=0;
             canvas.drawRect(Buy2, paintStrokeButton);
             FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, ss1, Buy2, 0);
 
-            FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, String.valueOf(buyStorePrice2), RectHandler.combineRects(rectsBuy2.get(3), rectsBuy2.get(4)), 0);
+            FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas,ShopActivity.Price2!=null?ShopActivity.Price2: buyStorePrice2, RectHandler.combineRects(rectsBuy2.get(3), rectsBuy2.get(4)), 0);
             other++;
 
         }
         else
         {
             FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, ss2, RectHandler.combineRects(rectsBuy2.get(2),      rectsBuy2.get(6)),   0);
+            Buy2=null;
 
         }
 
@@ -185,13 +188,14 @@ int other=0;
             canvas.drawRect(Buy3, paintStrokeButton);
 
             FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, ss1, Buy3, 0);
-            FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, String.valueOf(buyStorePrice3), RectHandler.combineRects(rectsBuy3.get(3),      rectsBuy3.get(4)),   0);
+            FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, ShopActivity.Price3!=null?ShopActivity.Price3:buyStorePrice3, RectHandler.combineRects(rectsBuy3.get(3),      rectsBuy3.get(4)),   0);
             other++;
 
         }
         else
         {
             FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, ss2, RectHandler.combineRects(rectsBuy3.get(2),      rectsBuy3.get(6)),   0);
+            Buy3=null;
 
         }
 
@@ -199,13 +203,14 @@ int other=0;
             canvas.drawRect(Buy4, paintButton);
             canvas.drawRect(Buy4, paintStrokeButton);
             FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas,ss1, Buy4, 0);
-            FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, String.valueOf(buyStorePrice4), RectHandler.combineRects(rectsBuy4.get(3), rectsBuy4.get(4)), 0);
+            FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas,ShopActivity.Price4!=null?ShopActivity.Price4: buyStorePrice4, RectHandler.combineRects(rectsBuy4.get(3), rectsBuy4.get(4)), 0);
             other++;
 
         }
         else
         {
             FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, ss2, RectHandler.combineRects(rectsBuy4.get(2),      rectsBuy4.get(6)),   0);
+            Buy4=null;
 
         }
 
@@ -213,13 +218,14 @@ int other=0;
             canvas.drawRect(Buy5, paintButton);
             canvas.drawRect(Buy5, paintStrokeButton);
             FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, ss1, Buy5, 0);
-            FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, String.valueOf(buyStorePrice5), RectHandler.combineRects(rectsBuy5.get(3), rectsBuy5.get(4)), 0);
+            FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, ShopActivity.Price5!=null?ShopActivity.Price5:buyStorePrice5, RectHandler.combineRects(rectsBuy5.get(3), rectsBuy5.get(4)), 0);
             other++;
 
         }
         else
         {
             FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, ss2, RectHandler.combineRects(rectsBuy5.get(2),      rectsBuy5.get(6)),   0);
+            Buy5=null;
 
         }
 
@@ -227,12 +233,13 @@ int other=0;
             canvas.drawRect(Buy6, paintButton);
             canvas.drawRect(Buy6, paintStrokeButton);
             FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, ss1, Buy6, 0);
-            FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, String.valueOf(buyStorePrice6), RectHandler.combineRects(rectsBuy6.get(3),      rectsBuy6.get(4)),   0);
+            FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas,ShopActivity.Price6!=null?ShopActivity.Price6: buyStorePrice6, RectHandler.combineRects(rectsBuy6.get(3),      rectsBuy6.get(4)),   0);
 
         }
         else
         {
             FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, "all flyer unlocked", RectHandler.combineRects(rectsBuy6.get(2),      rectsBuy6.get(6)),   0);
+            Buy6=null;
 
         }
 
@@ -282,6 +289,31 @@ int other=0;
             else  if(Buy6.contains((int)event.getX(),(int)event.getY()))
             {
                 ((ShopActivity)getContext()).buyPack();
+
+            }
+            else  if(Buy1.contains((int)event.getX(),(int)event.getY()))
+            {
+                ((ShopActivity)getContext()).buyChar1();
+
+            }
+            else  if(Buy2.contains((int) event.getX(), (int) event.getY()))
+            {
+                ((ShopActivity)getContext()).buyChar2();
+
+            }
+            else  if(Buy3.contains((int)event.getX(),(int)event.getY()))
+            {
+                ((ShopActivity)getContext()).buyChar3();
+
+            }
+            else  if(Buy4.contains((int)event.getX(),(int)event.getY()))
+            {
+                ((ShopActivity)getContext()).buyChar4();
+
+            }
+            else  if(Buy5.contains((int)event.getX(),(int)event.getY()))
+            {
+                ((ShopActivity)getContext()).buyChar5();
 
             }
         }

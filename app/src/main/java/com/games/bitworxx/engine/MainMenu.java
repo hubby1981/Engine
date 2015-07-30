@@ -45,7 +45,7 @@ public class MainMenu extends View {
 
     public MainMenu(Context context, AttributeSet attrs) {
         super(context, attrs);     TheChar=   MainActivity.loadChar();        changeChar();
-
+invalidate();
     }
 
 
@@ -106,9 +106,10 @@ public Rect getBounds()
 
         ClickPlay = getCombinedSmall(main.get(3));
         ClickHow = getCombinedSmall(main.get(3));
-        ClickHow.left=ClickPlay.right+(getWidth()/100)*2;
-        ClickHow.right=ClickHow.left+ClickPlay.width()+(getWidth()/100)*4;
+        ClickHow.left=ClickPlay.right+(getWidth()/100)*3;
+        ClickHow.right=ClickHow.left+ClickPlay.width()+(getWidth()/100)*6;
 
+        ClickPlay.left-=ClickPlay.width()/2;
         canvas.drawRect(ClickPlay, paintButton);
         canvas.drawRect(ClickPlay, paintStrokeButton);
         paintButton.setColor(Color.argb(200, 190, 100, 60));
@@ -280,10 +281,19 @@ public Rect getBounds()
             {
                 if(GameConst.MyChar.isLocked())
                 {
-                    TheChar=1;
-                    changeChar();
-                }
-                MainActivity.Start.run();
+                    MainActivity.Shop.run();
+                }else{
+                MainActivity.Start.run();}
+            }
+            if(ClickHow.contains((int)event.getX(),(int)event.getY()))
+            {
+
+                    MainActivity.Tutorial.run();
+            }
+            if(ClickOpt.contains((int)event.getX(),(int)event.getY()))
+            {
+
+                MainActivity.Options.run();
             }
             if(ClickSelect1.contains((int)event.getX(),(int)event.getY()))
             {

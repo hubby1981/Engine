@@ -6,4 +6,6 @@
     <string name="title_activity_game">GameActivity</string>
     <string name="title_activity_shop">ShopActivity</string>
     <string name="title_activity_splash">SplashActivity</string>
+    <string name="title_activity_tutorial">TutorialActivity</string>
+    <string name="title_activity_options">OptionsActivity</string>
 </resources>

@@ -52,6 +52,8 @@ public class GameConst {
     public static Paint FONT=null;
     public static DisplayMetrics Metrics=new DisplayMetrics();
 public static int GameCount=0;
+    public static int LGameCount=0;
+
     static
     {
         FONT=new Paint();

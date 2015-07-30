@@ -168,17 +168,17 @@ public class Spider extends BaseCharacter {
             line.setStrokeWidth(2);
          canvas.drawLine(body.exactCenterX(),body.exactCenterY(),Net.exactCenterX(),Net.exactCenterY(),line);
 
+            if(Main) {
+                int hm = (Net.height() / 2) / 3;
+                int yl = (int) Net.exactCenterY() + hm + hm / 2;
 
-            int hm=(Net.height()/2)/3;
-            int yl=(int)Net.exactCenterY()+hm+hm/2;
-
-            canvas.drawLine(Net.exactCenterX()-hm,yl,Net.exactCenterX(),yl+hm,line);
-            canvas.drawLine(Net.exactCenterX()+hm,yl,Net.exactCenterX(),yl+hm,line);
-            canvas.drawLine(Net.exactCenterX()-hm*2,yl,Net.exactCenterX(),yl+hm*2,line);
-            canvas.drawLine(Net.exactCenterX()+hm*2,yl,Net.exactCenterX(),yl+hm*2,line);
-            canvas.drawLine(Net.exactCenterX()-hm*3,yl,Net.exactCenterX(),yl+hm*3,line);
-            canvas.drawLine(Net.exactCenterX() + hm * 3, yl, Net.exactCenterX(), yl + hm * 3, line);
-
+                canvas.drawLine(Net.exactCenterX() - hm, yl, Net.exactCenterX(), yl + hm, line);
+                canvas.drawLine(Net.exactCenterX() + hm, yl, Net.exactCenterX(), yl + hm, line);
+                canvas.drawLine(Net.exactCenterX() - hm * 2, yl, Net.exactCenterX(), yl + hm * 2, line);
+                canvas.drawLine(Net.exactCenterX() + hm * 2, yl, Net.exactCenterX(), yl + hm * 2, line);
+                canvas.drawLine(Net.exactCenterX() - hm * 3, yl, Net.exactCenterX(), yl + hm * 3, line);
+                canvas.drawLine(Net.exactCenterX() + hm * 3, yl, Net.exactCenterX(), yl + hm * 3, line);
+            }
         }
     }
 

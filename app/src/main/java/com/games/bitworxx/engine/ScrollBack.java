@@ -94,8 +94,11 @@ public class ScrollBack extends View {
                 MACE.onDraw(canvas, new Rect(0, 0, getWidth(), BOTTOM.top), TOP.bottom);
 
             if(!GAME_OVER&&!getControls().IS_START) {
-                MACE.move(GameConst.MOVE_MACE);
+                boolean rm= MACE.move(GameConst.MOVE_MACE);
                 getSpiders().onMove(GameConst.MOVE_MACE);
+                if(rm){
+                    getSpiders().doSpider(1);
+                }
             }
             Paint Mace = new Paint();
             Mace.setColor(Color.BLACK);

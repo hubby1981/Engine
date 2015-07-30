@@ -98,9 +98,9 @@ public class MaceDrawer {
         if(BackRects.size()<index)return null;
         return BackRects.get(index);
     }
-    public void move(int move)
+    public boolean move(int move)
     {
-        if(!MOVEME)return;
+        if(!MOVEME)return false;
         for(BackRect r : BackRects)
         {
             r.moveLeft(move);
@@ -120,7 +120,11 @@ public class MaceDrawer {
             BackRects.add(r);
 
             GameConst.GameCount++;
+
+            return true;
         }
+
+        return false;
 
 
     }

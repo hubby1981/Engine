@@ -26,6 +26,7 @@ import java.util.ArrayList;
  */
 public class Options extends View {
     Rect ClickClose;
+    Rect ClickMute;
     public Options(Context context, AttributeSet attrs) {
         super(context, attrs);
         invalidate();
@@ -68,7 +69,17 @@ public class Options extends View {
         canvas.drawRect(ClickClose, paintButton);
         canvas.drawRect(ClickClose, paintStrokeButton);
         FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, "Close the options", ClickClose, 0);
-        FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT,canvas,"Coming soon options for game",main.get(2),0);
+
+
+        ArrayList<Rect> music = RectHandler.getGrid(1,8,main.get(2));
+
+        Bitmap icon = BitmapFactory.decodeResource(getResources(),MainActivity.readMusic()==1?R.drawable.mute_off:R.drawable.mute_on);
+        ClickMute=new Rect(music.get(1).left,music.get(1).top,music.get(1).left+icon.getWidth(),music.get(1).top+icon.getHeight());
+        canvas.drawBitmap(icon,ClickMute.left,ClickMute.top,null);
+        ClickMute=main.get(2);
+        FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, MainActivity.readMusic()==0?"MUSIC SET TO ON":"MUSIC SET TO OFF", RectHandler.combineRects(music.get(3),music.get(7)), 0);
+
+        FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas,"tap on the icon to change a setting",main.get(1), 0);
     }
 
     @Override
@@ -81,7 +92,15 @@ public class Options extends View {
                 ((Activity)getContext()).finish();
 
             }
-
+            if(ClickMute.contains((int)event.getX(),(int)event.getY()))
+            {
+                MainActivity.saveMusic(MainActivity.readMusic() == 0 ? 1 : -1);
+                if(MainActivity.readMusic()==1)
+                    MainActivity.MP.setVolume(0f,0f);
+                else
+                    MainActivity.MP.setVolume(1f,1f);
+                invalidate();
+            }
         }
         return true;
     }

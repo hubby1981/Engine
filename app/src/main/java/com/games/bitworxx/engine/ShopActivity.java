@@ -37,11 +37,12 @@ public class ShopActivity extends Activity {
     public static String Price5=null;
     public static String Price6=null;
 
+
     public String SKU_BUY1="buychar1";
     public String SKU_BUY2="buychar2";
-    public String SKU_BUY3="buychar3";
-    public String SKU_BUY4="buychar4";
-    public String SKU_BUY5="buychar5";
+    public String SKU_BUY3="buychar4";
+    public String SKU_BUY4="buychar5";
+    public String SKU_BUY5="buychar3";
     public String SKU_BUY6="buypack1";
 
 
@@ -100,6 +101,7 @@ public IabHelper mHelper;
                     }
                 }
                 Price6=buypack.getPrice();
+
             }
 
             SkuDetails buychar1 = inventory.getSkuDetails(SKU_BUY1);
@@ -114,6 +116,7 @@ public IabHelper mHelper;
                     }
                 }
                 Price1=buychar1.getPrice();
+
             }
 
             SkuDetails buychar2 = inventory.getSkuDetails(SKU_BUY2);

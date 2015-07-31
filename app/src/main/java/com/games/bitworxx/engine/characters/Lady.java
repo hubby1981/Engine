@@ -35,15 +35,15 @@ public class Lady extends BaseCharacter {
 
     @Override
     public boolean isLocked() {
-        if(MainActivity.readBuy(getCode())>0)
+        if(MainActivity.readBuy(getCode())>0|| MainActivity.readBuy(97)>0)
             return false;
-        if(MainActivity.readBest(5)>999)
+        if(MainActivity.readBest(5)>500)
             return false;
         return true;
     }
     @Override
     public String getUnlockText() {
-        return "to unlock Lady Bug score 999 with Little Spirit";
+        return "to unlock Lady Bug score 500 with Little Spirit";
     }
 
     @Override

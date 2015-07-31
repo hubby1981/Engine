@@ -140,6 +140,12 @@ public class Shop extends View {
         FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, ll.Name, RectHandler.combineRects(rectsBuy5.get(2),          rectsBuy5.get(5)),   1);
         FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, "FLYER PACK", RectHandler.combineRects(rectsBuy6.get(2),      rectsBuy6.get(5)),   1);
 
+        FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, "or 25 score  arty mcfly", RectHandler.combineRects(rectsBuy1.get(2), rectsBuy1.get(5)), 8);
+        FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, "or 75 score  "+l.Name, RectHandler.combineRects(rectsBuy2.get(2), rectsBuy2.get(5)), 8);
+        FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, "or 150 score "+b.Name, RectHandler.combineRects(rectsBuy3.get(2), rectsBuy3.get(5)), 8);
+        FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, "or 250 score "+bb.Name, RectHandler.combineRects(rectsBuy4.get(2), rectsBuy4.get(5)), 8);
+        FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, "or 500 score "+s.Name, RectHandler.combineRects(rectsBuy5.get(2), rectsBuy5.get(5)), 8);
+        FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, "over 40% less then single buy", RectHandler.combineRects(rectsBuy6.get(2), rectsBuy6.get(5)), 10);
 
 
         Buy1=getCombinedRect(rectsBuy1,6,7);

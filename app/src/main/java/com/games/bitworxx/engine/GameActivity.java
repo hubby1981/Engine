@@ -30,7 +30,7 @@ public class GameActivity extends Activity {
         public void run() {
             Update.run();
         }
-    },0,70);
+    },0,60);
     }
     private void update()
     {
@@ -74,7 +74,7 @@ public void startUpdater()
         public void run() {
             Update.run();
         }
-    }, 0, 70);
+    }, 0, 60);
 }
     public void finishEx()
     {

@@ -114,9 +114,9 @@ public class Butter extends BaseCharacter {
     }
     @Override
     public boolean isLocked() {
-        if(MainActivity.readBuy(getCode())>0)
+        if(MainActivity.readBuy(getCode())>0 || MainActivity.readBuy(97)>0)
             return false;
-        if(MainActivity.readBest(3)>500)
+        if(MainActivity.readBest(3)>150)
             return false;
         return true;
     }
@@ -140,6 +140,6 @@ public class Butter extends BaseCharacter {
 
     @Override
     public String getUnlockText() {
-        return "to unlock Budda Fly score 500 with Wanna Bee";
+        return "to unlock Budda Fly score 150 with Wanna Bee";
     }
 }

@@ -49,10 +49,11 @@ IsMace=isMace;
         if(!IsMace) {
             back.setColor(GameConst.EYE_COLOR);
             canvas.drawRect(BaseRect, back);
-            back.setColor(Color.argb(A/2, ConstColor.RED, ConstColor.GREEN, ConstColor.BLUE));
+            back.setColor(Color.argb(A, ConstColor.RED, ConstColor.GREEN, ConstColor.BLUE));
         }else
         {
-            back.setColor(GameConst.MACE_COLOR);
+            back.setColor(Color.argb(255,50,50,50));
+
 
         }
         back.setStyle(Paint.Style.FILL);
@@ -62,6 +63,8 @@ IsMace=isMace;
             BaseRect2=new Rect(BaseRect.left,bounds.bottom- ((Height*2)*c),BaseRect.right,bounds.bottom);
             canvas.drawRect(BaseRect2,back);
         }
+
+
         canvas.drawRect(BaseRect, back);
 
 

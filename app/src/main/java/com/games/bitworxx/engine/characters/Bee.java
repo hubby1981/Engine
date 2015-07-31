@@ -40,9 +40,9 @@ public class Bee extends BaseCharacter {
     @Override
     public boolean isLocked() {
 
-        if(MainActivity.readBuy(getCode())>0)
+        if(MainActivity.readBuy(getCode())>0 || MainActivity.readBuy(97)>0)
             return false;
-        if(MainActivity.readBest(2)>100)
+        if(MainActivity.readBest(2)>75)
             return false;
         return true;
     }
@@ -151,6 +151,6 @@ public class Bee extends BaseCharacter {
 
     @Override
     public String getUnlockText() {
-        return "to unlock Wanna Bee score 100 with Lolo Locust";
+        return "to unlock Wanna Bee score 75 with Lolo Locust";
     }
 }

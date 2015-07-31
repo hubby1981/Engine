@@ -34,9 +34,9 @@ public class Controls extends View {
     public Controls(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
-public boolean CheckCollision=true;
+    public boolean CheckCollision=true;
     public boolean IS_START=false;
-public Timer StartTimer=new Timer();
+    public Timer StartTimer=new Timer();
     public RectF ClickLeft;
     public RectF ClickRight;
     public RectF ClickMiddle;
@@ -132,6 +132,24 @@ if(UPDATE) {
         ThisChar.onDraw(canvas);
         if(ThisChar.HeroActive==0)
             checkCollision();
+        else
+        {
+            ArrayList<Spider> sp = getSpiders().Spiders;
+            boolean isDead = false;
+            if(sp!=null&&sp.size()>0)
+            {
+                for(Spider s : sp)
+                    if(!isDead)
+                    {
+                        isDead = s.isInRect(ThisChar.getBody());
+                        if(isDead)
+                        {
+                            s.IsDead=true;
+                            isDead=false;
+                        }
+                    }
+            }
+        }
     }
     else
         {
@@ -219,9 +237,10 @@ if(UPDATE) {
     private void initGameTimer() {
 
         ThisChar=GameConst.MyChar.getCopy();
-        ThisChar.X= TOP.centerX();
         ThisChar.Y=getHeight()/2;
         ThisChar.Size= TOP.height()/3;
+        ThisChar.X= TOP.left+(int)((float)ThisChar.Size*1.5f);
+
         GameConst.MyChar.Size=ThisChar.Size;
 
         START=false;
@@ -257,6 +276,7 @@ if(UPDATE) {
         GameConst.GameCount=0;
         GameConst.LGameCount=0;
         GameConst.POWER=0;
+
     }
 
     public Spiders getSpiders()

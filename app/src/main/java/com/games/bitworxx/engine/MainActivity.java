@@ -5,7 +5,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.AssetFileDescriptor;
+import android.graphics.BitmapFactory;
+import android.graphics.BitmapShader;
 import android.graphics.Canvas;
+import android.graphics.Shader;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.renderscript.RenderScript;
@@ -33,6 +36,8 @@ public class MainActivity extends Activity {
     public static MediaPlayer MP=new MediaPlayer();
     public static MediaPlayer MP_UP=new MediaPlayer();
     public static MediaPlayer MP_PONG = new MediaPlayer();
+
+    public static Shader MetalShader;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,8 +86,15 @@ public class MainActivity extends Activity {
             }
         };
 
+        MetalShader= new BitmapShader(BitmapFactory.decodeResource(getResources(),R.drawable.metal), Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
+
         startSplash();
 
+        if(MP!=null)
+            if(MainActivity.readMusic()==1)
+                MainActivity.MP.setVolume(0f,0f);
+            else
+                MainActivity.MP.setVolume(1f,1f);
     }
 
 
@@ -251,6 +263,22 @@ public class MainActivity extends Activity {
         SharedPreferences pref = getPref();
         SharedPreferences.Editor edit = pref.edit();
         edit.putInt(TXT.KEY_HIGH, best);
+        edit.commit();
+    }
+
+    public static int readMusic()
+    {
+        SharedPreferences pref = getPref();
+        int best =  pref.getInt(TXT.KEY_MUSIC, -1);
+        return best==-1?0:best;
+    }
+
+
+    public static void saveMusic(int music)
+    {
+        SharedPreferences pref = getPref();
+        SharedPreferences.Editor edit = pref.edit();
+        edit.putInt(TXT.KEY_MUSIC,music);
         edit.commit();
     }
 

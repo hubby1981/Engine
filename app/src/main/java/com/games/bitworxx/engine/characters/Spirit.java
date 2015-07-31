@@ -36,16 +36,16 @@ public class Spirit extends BaseCharacter {
 
     @Override
     public boolean isLocked() {
-        if(MainActivity.readBuy(getCode())>0)
+        if(MainActivity.readBuy(getCode())>0|| MainActivity.readBuy(97)>0)
             return false;
-        if(MainActivity.readBest(4)>750)
+        if(MainActivity.readBest(4)>250)
             return false;
         return true;
     }
 
     @Override
     public String getUnlockText() {
-        return "to unlock WLittle Spirit score 750 with Budda Fly";
+        return "to unlock WLittle Spirit score 250 with Budda Fly";
     }
 
     @Override

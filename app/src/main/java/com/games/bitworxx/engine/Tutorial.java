@@ -76,7 +76,7 @@ public class Tutorial extends View {
 
         ClickSelect1=select.get(1);
         ClickSelect2=select.get(5);
-        FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, String.valueOf(Page)+"/"+String.valueOf(Pages), select2.get(3), 3);
+        FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, String.valueOf(Page)+"/"+String.valueOf(Pages), select.get(3), 3);
 
         ClickSelect1=new Rect(ClickSelect1.left,ClickSelect1.top+ClickSelect1.height()/2,ClickSelect1.right,ClickSelect1.bottom);
         ClickSelect2=new Rect(ClickSelect2.left,ClickSelect2.top+ClickSelect2.height()/2,ClickSelect2.right,ClickSelect2.bottom);

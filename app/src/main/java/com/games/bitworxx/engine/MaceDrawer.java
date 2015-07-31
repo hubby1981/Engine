@@ -26,7 +26,7 @@ public class MaceDrawer {
         if (BackRects.size() == 0) generateRects(t);
         try {
 
-            int index =2;
+            int index =8;
             for(int x=0;x<index;x++)
                 BackRects.get(x).onDraw(canvas,bounds);
 
@@ -37,7 +37,7 @@ public class MaceDrawer {
 
         public boolean isInRect(int x,int y)
         {
-            int index =2;
+            int index =8;
             boolean result=false;
             for(int xx=0;xx<index;xx++)
                 if(!result)

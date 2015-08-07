@@ -21,8 +21,8 @@ public class GameConst {
     public static int EYE_COLOR= Color.WHITE;
     public static long PEROID=15;
     public static int FRAME_RATE=1;
-    public static int MOVE_BACK=20;
-    public static int MOVE_MACE=20;
+    public static int MOVE_BACK=15;
+    public static int MOVE_MACE=15;
     public static boolean ChangeColor=false;
 public static int POWER=0;
     public static float PEROID_FACTOR=(float)0.5;

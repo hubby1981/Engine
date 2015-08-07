@@ -142,7 +142,7 @@ public class Spirit extends BaseCharacter {
     public void animatePosition() {
 
         int x=4;
-        int y=12;
+        int y=8;
         X+= RandomRange.getRandom(-x, y);
         Y+=RandomRange.getRandom(-x,y);
     }

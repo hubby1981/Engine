@@ -90,6 +90,7 @@ public class MainActivity extends Activity {
 
         startSplash();
 
+
         if(MP!=null)
             if(MainActivity.readMusic()==1)
                 MainActivity.MP.setVolume(0f,0f);

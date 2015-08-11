@@ -150,7 +150,7 @@ public class Tutorial extends View {
     public void drawStep3(Canvas canvas,ArrayList<Rect> main)
     {
         FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas," Gameplay Step 3", main.get(1), 0);
-        FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas," the flyer go up and forward", main.get(2), 1);
+        FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas," hit a diamond and get heropower", main.get(2), 1);
 
         FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas," use heropower to fly through spiders", main.get(5), 1);
 

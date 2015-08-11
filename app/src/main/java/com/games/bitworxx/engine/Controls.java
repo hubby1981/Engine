@@ -16,6 +16,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.games.bitworxx.engine.characters.BaseCharacter;
+import com.games.bitworxx.engine.characters.Diamond;
 import com.games.bitworxx.engine.characters.Fly;
 import com.games.bitworxx.engine.characters.GameConst;
 import com.games.bitworxx.engine.characters.Locust;
@@ -183,42 +184,61 @@ if(UPDATE) {
     public void checkCollision()
     {
         boolean isDead=false;
+        boolean isHero=false;
 
         if(CheckCollision&&ThisChar!=null&&!ThisChar.IsDead) {
 
-            for(Point p : ThisChar.getHitPoints())
+            if(!isDead &&!isHero)
             {
-                if(!isDead){
-                    isDead=getBack().isInRect(p.x,p.y);
-                }
-                if(!isDead)
-                    isDead=TOP.contains(p.x,p.y);
-                if(!isDead)
-                    isDead=BOTTOM.contains(p.x,p.y);
-            }
-            if(isDead)
-            {
-                DEAD_BY="bam!!! u feel the block?";
-                MainActivity.MP_PONG.start();
-            }
-
-            if(!isDead)
-            {
-                boolean old = isDead;
-                ArrayList<Spider> sp = getSpiders().Spiders;
-                if(sp!=null&&sp.size()>0)
+                ArrayList<Diamond> dp = getSpiders().Diamonds;
+                if(dp!=null&&dp.size()>0)
                 {
-                    for(Spider s : sp)
-                        if(!isDead)
-                            isDead = s.isInRect(ThisChar.getBody());
-                }
+                    for(Diamond d : dp)
+                    {
+                        if(!isHero)
+                            isHero =  d.checkHit(ThisChar.getBody());
 
-                if(!old&&isDead)
-                {
-                    DEAD_BY="tasty spider candy - yam yam";
+
+                    }
                 }
             }
 
+            if(isHero)
+            {
+                ThisChar.HeroActive=100;
+            }
+            else {
+
+                for (Point p : ThisChar.getHitPoints()) {
+                    if (!isDead) {
+                        isDead = getBack().isInRect(p.x, p.y);
+                    }
+                    if (!isDead)
+                        isDead = TOP.contains(p.x, p.y);
+                    if (!isDead)
+                        isDead = BOTTOM.contains(p.x, p.y);
+                }
+                if (isDead) {
+                    DEAD_BY = "bam!!! u feel the block?";
+                    MainActivity.MP_PONG.start();
+                }
+
+                if (!isDead) {
+                    boolean old = isDead;
+                    ArrayList<Spider> sp = getSpiders().Spiders;
+                    if (sp != null && sp.size() > 0) {
+                        for (Spider s : sp)
+                            if (!isDead && !s.IsDead)
+                                isDead = s.isInRect(ThisChar.getBody());
+                    }
+
+                    if (!old && isDead) {
+                        DEAD_BY = "tasty spider candy - yam yam";
+                    }
+                }
+
+
+            }
 
 
             if (isDead) {

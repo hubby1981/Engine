@@ -6,6 +6,7 @@ import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.games.bitworxx.engine.characters.Diamond;
 import com.games.bitworxx.engine.characters.GameConst;
 import com.games.bitworxx.engine.characters.Spider;
 
@@ -19,6 +20,7 @@ public class Spiders extends View {
 
 
     ArrayList<Spider> Spiders = null;
+    ArrayList<Diamond> Diamonds = null;
 
     public Spiders(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -34,12 +36,18 @@ public class Spiders extends View {
         if(Spiders==null)
         {
             Spiders=new ArrayList<>();
+            if(Diamonds==null)
+                Diamonds=new ArrayList<>();
             doSpider(1);
         }
 
         if(Spiders.size()>0)
             for(Spider s :Spiders)
                 s.onDraw(canvas);
+
+        if(Diamonds.size()>0)
+            for(Diamond d : Diamonds)
+                d.onDraw(canvas);
     }
     public Controls getControls()
     {
@@ -68,14 +76,28 @@ public class Spiders extends View {
                     s.Size = si;
                     Spiders.add(s);
 
+
+                    if(Diamonds!=null && rr!=null)
+                    {
+                        if(RandomRange.getRandom(1,3)==2)
+                        {
+                            int x = RandomRange.getRandom(rr.BaseRect.left+rr.BaseRect.width()/10,rr.BaseRect.right-rr.BaseRect.width()/10);
+                            int y = RandomRange.getRandom(s.Net.bottom,s.Y);
+
+                            Diamonds.add(new Diamond(x,y,getResources()));
+                        }
+                    }
                 }
             }
         }
+
+
     }
 
     public void onMove(int move)
     {
         ArrayList<Spider> index = new ArrayList<>();
+        ArrayList<Diamond> index2 = new ArrayList<>();
 
         if(Spiders!=null && Spiders.size()>0)
             for(Spider s :Spiders)
@@ -92,9 +114,25 @@ public class Spiders extends View {
 
             }
 
+        if(Diamonds!=null && Diamonds.size()>0)
+            for(Diamond d :Diamonds)
+            {
+
+                d.X-=move;
+                if (d.X+50 < 0) {
+                    index2.add(d);
+                }
+
+            }
+
         for(Spider ii : index)
         {
             Spiders.remove(ii);
+        }
+
+        for(Diamond ii : index2)
+        {
+            Diamonds.remove(ii);
         }
     }
 

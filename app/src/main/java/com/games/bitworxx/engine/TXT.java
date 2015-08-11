@@ -10,7 +10,8 @@ public class TXT {
     public static String KEY_HIGH="HIGH";
     public static String KEY_CHAR="CHAR";
     public static String KEY_BUY="BUY";
-    public static String KEY_MUSIC="BUY";
+    public static String KEY_MUSIC="MUSIC";
+    public static String KEY_SPEED="SPEED";
 
 
 }

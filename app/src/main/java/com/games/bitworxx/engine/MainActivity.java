@@ -90,6 +90,8 @@ public class MainActivity extends Activity {
 
         startSplash();
 
+        GameConst.MOVE_MACE=readSpeed();
+        GameConst.MOVE_BACK=readSpeed();
 
         if(MP!=null)
             if(MainActivity.readMusic()==1)
@@ -256,6 +258,21 @@ public class MainActivity extends Activity {
         SharedPreferences pref = getPref();
         int best =  pref.getInt(TXT.KEY_HIGH, -1);
         return best==-1?0:best;
+    }
+
+    public static void saveSpeed(int speed)
+    {
+        SharedPreferences pref = getPref();
+        SharedPreferences.Editor edit = pref.edit();
+        edit.putInt(TXT.KEY_SPEED, speed);
+        edit.commit();
+    }
+
+    public static int readSpeed()
+    {
+        SharedPreferences pref = getPref();
+        int best =  pref.getInt(TXT.KEY_SPEED, -1);
+        return best==-1?20:best;
     }
 
 

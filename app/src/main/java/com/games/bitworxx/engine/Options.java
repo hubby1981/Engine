@@ -2,12 +2,14 @@ package com.games.bitworxx.engine;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.net.Uri;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -27,6 +29,12 @@ import java.util.ArrayList;
 public class Options extends View {
     Rect ClickClose;
     Rect ClickMute;
+
+    Rect ClickSlow;
+    Rect ClickNormal;
+    Rect ClickFast;
+    Rect ClickRate;
+
     public Options(Context context, AttributeSet attrs) {
         super(context, attrs);
         invalidate();
@@ -70,6 +78,34 @@ public class Options extends View {
         canvas.drawRect(ClickClose, paintStrokeButton);
         FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, "Close the options", ClickClose, 0);
 
+        ClickRate=main.get(6);
+        canvas.drawRect(ClickRate, paintButton);
+        canvas.drawRect(ClickRate, paintStrokeButton);
+        FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, "Rate the app", ClickRate, 0);
+
+        String sped=MainActivity.readSpeed()==10?"Slow":MainActivity.readSpeed()==30?"Fast":"Normal";
+        FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, "Speed: "+sped, main.get(3), 0);
+
+        ArrayList<Rect> speeds = RectHandler.getGrid(1,9,main.get(4));
+
+        ClickSlow = RectHandler.combineRects(speeds.get(0),speeds.get(2));
+        ClickNormal = RectHandler.combineRects(speeds.get(3),speeds.get(5));
+        ClickFast = RectHandler.combineRects(speeds.get(6),speeds.get(8));
+
+        canvas.drawRect(ClickSlow, paintButton);
+        canvas.drawRect(ClickSlow, paintStrokeButton);
+
+        canvas.drawRect(ClickNormal, paintButton);
+        canvas.drawRect(ClickNormal, paintStrokeButton);
+
+        canvas.drawRect(ClickFast, paintButton);
+        canvas.drawRect(ClickFast, paintStrokeButton);
+
+        FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, "SLOW", ClickSlow, 0);
+        FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, "Normal",ClickNormal, 0);
+        FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, "FAST",ClickFast, 0);
+
+
 
         ArrayList<Rect> music = RectHandler.getGrid(1,8,main.get(2));
 
@@ -92,6 +128,41 @@ public class Options extends View {
                 ((Activity)getContext()).finish();
 
             }
+
+            if(ClickSlow.contains((int)event.getX(),(int)event.getY()))
+            {
+                MainActivity.saveSpeed(15);
+                GameConst.MOVE_MACE=15;
+                GameConst.MOVE_BACK=15;
+
+            }
+
+            if(ClickNormal.contains((int)event.getX(),(int)event.getY()))
+            {
+                MainActivity.saveSpeed(20);
+                GameConst.MOVE_MACE=20;
+                GameConst.MOVE_BACK=20;
+
+            }
+
+            if(ClickFast.contains((int)event.getX(),(int)event.getY()))
+            {
+                MainActivity.saveSpeed(30);
+                GameConst.MOVE_MACE=30;
+                GameConst.MOVE_BACK=30;
+
+            }
+
+            if(ClickRate.contains((int)event.getX(),(int)event.getY()))
+            {
+                final String appPackageName = getContext().getPackageName(); // getPackageName() from Context or Activity object
+                try {
+                    getContext().startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+                } catch (android.content.ActivityNotFoundException anfe) {
+                    getContext().startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+                }
+
+            }
             if(ClickMute.contains((int)event.getX(),(int)event.getY()))
             {
                 MainActivity.saveMusic(MainActivity.readMusic() == 0 ? 1 : -1);
@@ -99,9 +170,10 @@ public class Options extends View {
                     MainActivity.MP.setVolume(0f,0f);
                 else
                     MainActivity.MP.setVolume(1f,1f);
-                invalidate();
             }
         }
+        invalidate();
+
         return true;
     }
 

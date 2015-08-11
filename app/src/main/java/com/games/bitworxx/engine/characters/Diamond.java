@@ -18,7 +18,7 @@ public class Diamond {
     public int X=0;
     public int Y=0;
     public boolean IsHit=false;
-    Bitmap Icon = null;
+    public Bitmap Icon = null;
     public Diamond(int x,int y,Resources context)
     {
         X=x;
@@ -47,7 +47,8 @@ public class Diamond {
     public boolean checkHit(Rect rc)
     {
         IsHit=false;
-        if(rc.contains(X,Y))
+
+        if( rc.contains(new Rect(X,Y,Icon.getWidth(),Icon.getHeight())))
         {
             IsHit=true;
             GameConst.GameCount++;

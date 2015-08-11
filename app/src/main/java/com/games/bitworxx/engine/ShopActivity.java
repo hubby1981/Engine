@@ -185,6 +185,7 @@ public IabHelper mHelper;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop);
         mHelper = new IabHelper(this, MainActivity.KEY);
+        MainActivity.sendTracking("Shop", "shop", "UX", "open shop");
 
         mHelper.startSetup(new
                                    IabHelper.OnIabSetupFinishedListener() {
@@ -259,32 +260,38 @@ public IabHelper mHelper;
     }
     public void buyPack()
     {
+        MainActivity.sendTracking("Shop", "buy", "UX", "Buy complete pack");
 
         mHelper.launchPurchaseFlow(this,SKU_BUY6,SKU_CODE_BUY6,mPurchaseFinishedListener);
     }
 
     public void buyChar1()
     {
+        MainActivity.sendTracking("Shop", "buy", "UX", "Buy char1");
 
         mHelper.launchPurchaseFlow(this,SKU_BUY1,SKU_CODE_BUY1,mPurchaseFinishedListener);
     }
     public void buyChar2()
     {
+        MainActivity.sendTracking("Shop", "buy", "UX", "Buy char2");
 
         mHelper.launchPurchaseFlow(this,SKU_BUY2,SKU_CODE_BUY2,mPurchaseFinishedListener);
     }
     public void buyChar3()
     {
+        MainActivity.sendTracking("Shop", "buy", "UX", "Buy char3");
 
         mHelper.launchPurchaseFlow(this,SKU_BUY3,SKU_CODE_BUY3,mPurchaseFinishedListener);
     }
     public void buyChar4()
     {
+        MainActivity.sendTracking("Shop", "buy", "UX", "Buy char4");
 
         mHelper.launchPurchaseFlow(this,SKU_BUY4,SKU_CODE_BUY4,mPurchaseFinishedListener);
     }
     public void buyChar5()
     {
+        MainActivity.sendTracking("Shop", "buy", "UX", "Buy char5");
 
         mHelper.launchPurchaseFlow(this,SKU_BUY5,SKU_CODE_BUY5,mPurchaseFinishedListener);
     }

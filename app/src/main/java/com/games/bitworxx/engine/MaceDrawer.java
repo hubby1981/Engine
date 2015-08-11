@@ -53,7 +53,7 @@ public class MaceDrawer {
 
     private void generateRects(int t)
     {
-        int size = ConstColor.Level1.length();
+        int size = getLevel1().length();
 
         int max = BOUNDS.width() /1;
         int height = BOUNDS.height()/20;
@@ -78,17 +78,47 @@ public class MaceDrawer {
 
     }
 
+    private String getLevel1()
+    {
+        if(GameConst.MyChar.getCode()==2)
+            return ConstColor.Level1_locust;
+        if(GameConst.MyChar.getCode()==3)
+            return ConstColor.Level1_bee;
+        if(GameConst.MyChar.getCode()==4)
+            return ConstColor.Level1_budda;
+        if(GameConst.MyChar.getCode()==5)
+            return ConstColor.Level1_spirit;
+        if(GameConst.MyChar.getCode()==6)
+            return ConstColor.Level1_lady;
+        return ConstColor.Level1_normal;
+    }
+
+    private String getLevel2()
+    {
+        if(GameConst.MyChar.getCode()==2)
+            return ConstColor.Level2_locust;
+        if(GameConst.MyChar.getCode()==3)
+            return ConstColor.Level2_bee;
+        if(GameConst.MyChar.getCode()==4)
+            return ConstColor.Level2_budda;
+        if(GameConst.MyChar.getCode()==5)
+            return ConstColor.Level2_spirit;
+        if(GameConst.MyChar.getCode()==6)
+            return ConstColor.Level2_lady;
+        return ConstColor.Level2_normal;
+    }
+
     public int getCount1()
     {
-        if(ConstColor.Count1>ConstColor.Level1.length()-1)ConstColor.Count1=0;
-        String result = ConstColor.Level1.substring(ConstColor.Count1,ConstColor.Count1+1);
+        if(ConstColor.Count1>getLevel1().length()-1)ConstColor.Count1=0;
+        String result = getLevel1().substring(ConstColor.Count1, ConstColor.Count1 + 1);
         ConstColor.Count1++;
         return Integer.parseInt(result);
     }
     public int getCount2()
     {
-        if(ConstColor.Count2>ConstColor.Level2.length()-1)ConstColor.Count2=0;
-        String result = ConstColor.Level2.substring(ConstColor.Count2,ConstColor.Count2+1);
+        if(ConstColor.Count2>getLevel2().length()-1)ConstColor.Count2=0;
+        String result = getLevel2().substring(ConstColor.Count2, ConstColor.Count2 + 1);
         ConstColor.Count2++;
         return Integer.parseInt(result);
     }

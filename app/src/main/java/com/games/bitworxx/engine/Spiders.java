@@ -79,7 +79,7 @@ public class Spiders extends View {
 
                     if(Diamonds!=null && rr!=null)
                     {
-                        if(RandomRange.getRandom(1,3)==2)
+                        if(RandomRange.getRandom(1,4)==2)
                         {
                             int x = RandomRange.getRandom(rr.BaseRect.left+rr.BaseRect.width()/10,rr.BaseRect.right-rr.BaseRect.width()/10);
                             int y = RandomRange.getRandom(s.Net.bottom,s.Y);
@@ -119,7 +119,7 @@ public class Spiders extends View {
             {
 
                 d.X-=move;
-                if (d.X+50 < 0) {
+                if (d.X+d.Icon.getWidth() <0) {
                     index2.add(d);
                 }
 

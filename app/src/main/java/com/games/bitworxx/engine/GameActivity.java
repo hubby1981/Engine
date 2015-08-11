@@ -25,7 +25,10 @@ public class GameActivity extends Activity {
         };
         runOnUiThread(Update);
 
-    Updater.schedule(new TimerTask() {
+        MainActivity.sendTracking("Game", "play", "UX", "start game");
+
+
+        Updater.schedule(new TimerTask() {
         @Override
         public void run() {
             Update.run();

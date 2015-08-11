@@ -18,6 +18,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.games.bitworxx.engine.characters.GameConst;
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 
 public class MainActivity extends Activity {
@@ -28,6 +31,8 @@ public class MainActivity extends Activity {
     public static Runnable Start;
     public static Runnable Tutorial;
     public static Runnable Options;
+    public static GoogleAnalytics analytics;
+    public static Tracker tracker;
 
     public static String KEY="MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsL4Tq2tCeqRkdk6rhHiY3SakvlWAqgCws4ZIM34Z5UCFB2g2DtL851UU6lODrMe7lVcIJyxrW15fOQTM8YPaHaldo0xCi6qxfpkLvC0sxYo/OkF8OU31g+NNV/+7h9CF7uytvlJkF4dyE/ay0TKSxsnOmM8QBbIb8FftifTJVGR6L8HiQbIZRsKYWDteZ2yGKxIrnUjQ6rZeDOK1CGFf2SP4yygjkFH1SIHETWzEopu6JcgiR4P7DGg5bUvkIwV5K9fnwTDydbCh/tOQXPxPGf8rhKMHz7iMSZ1/9kfwK6SAgehStvC+uhshRhkEoxGV4JYELqi5kSV2luJKiHJQSQIDAQAB";
     public static String KEY2="UA-65112560-2";
@@ -42,6 +47,16 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         GM=new GameConst();
+
+        analytics = GoogleAnalytics.getInstance(this);
+        analytics.setLocalDispatchPeriod(1080);
+
+        tracker = analytics.newTracker(KEY2);
+        tracker.enableExceptionReporting(true);
+        tracker.enableAdvertisingIdCollection(true);
+        tracker.enableAutoActivityTracking(true);
+
+        sendTracking("Main","info","UX","start app");
 
         new Thread(new Runnable() {
             @Override
@@ -86,6 +101,8 @@ public class MainActivity extends Activity {
             }
         };
 
+
+
         MetalShader= new BitmapShader(BitmapFactory.decodeResource(getResources(),R.drawable.metal), Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
 
         startSplash();
@@ -98,6 +115,17 @@ public class MainActivity extends Activity {
                 MainActivity.MP.setVolume(0f,0f);
             else
                 MainActivity.MP.setVolume(1f,1f);
+    }
+
+
+    public static void sendTracking(String screen, String label, String category, String action)
+    {
+        tracker.setScreenName(screen);
+        tracker.send(new HitBuilders.EventBuilder()
+                .setCategory(category)
+                .setAction(action)
+                .setLabel(label)
+                .build());
     }
 
 

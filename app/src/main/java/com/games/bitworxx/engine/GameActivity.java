@@ -5,6 +5,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -17,6 +18,12 @@ public class GameActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        if(MainActivity.readBuy(51)!=0)
+        {
+            findViewById(R.id.adView).setVisibility(View.INVISIBLE);
+        }
+
         Update=new Runnable() {
             @Override
             public void run() {

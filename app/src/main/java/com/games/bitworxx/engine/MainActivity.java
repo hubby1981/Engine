@@ -281,6 +281,22 @@ public class MainActivity extends Activity {
         edit.commit();
     }
 
+    public static int readAd()
+    {
+        SharedPreferences pref = getPref();
+        int best =  pref.getInt(TXT.KEY_AD, -1);
+        return best==-1?0:best;
+    }
+
+
+    public static void saveAd()
+    {
+        SharedPreferences pref = getPref();
+        SharedPreferences.Editor edit = pref.edit();
+        edit.putInt(TXT.KEY_AD, 1);
+        edit.commit();
+    }
+
     public static int readHigh()
     {
         SharedPreferences pref = getPref();

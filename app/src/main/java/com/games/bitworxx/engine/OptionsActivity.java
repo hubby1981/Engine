@@ -1,9 +1,12 @@
 package com.games.bitworxx.engine;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.games.bitworxx.engine.util.ShopHelperFlyer;
 
 
 public class OptionsActivity extends ActionBarActivity {
@@ -11,8 +14,35 @@ public class OptionsActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ShopHelper=new ShopHelperFlyer(this);
+
         setContentView(R.layout.activity_options);
     }
+
+    ShopHelperFlyer ShopHelper;
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+    }
+
+    public void buyNodAds()
+    {
+        if(ShopHelper!=null)
+            ShopHelper.buyNoAds();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode,
+                                    Intent data)
+    {
+        if (!ShopHelper.mHelper.handleActivityResult(requestCode,
+                resultCode, data)) {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

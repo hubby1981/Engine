@@ -1,11 +1,25 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.games.bitworxx.engine.SplashActivity">
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    tools:context="com.games.bitworxx.engine.SplashActivity"
+    android:background="#29ff00">
 
 
     <com.games.bitworxx.engine.Splash
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:id="@+id/view"/>
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/ad_splash">
+    </com.google.android.gms.ads.AdView>
 </RelativeLayout>

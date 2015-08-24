@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.net.Uri;
+import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -20,6 +21,7 @@ import com.games.bitworxx.engine.characters.GameConst;
 import com.games.bitworxx.engine.characters.Lady;
 import com.games.bitworxx.engine.characters.Locust;
 import com.games.bitworxx.engine.characters.Spirit;
+import com.games.bitworxx.engine.util.ShopHelperFlyer;
 
 import java.util.ArrayList;
 
@@ -34,11 +36,14 @@ public class Options extends View {
     Rect ClickNormal;
     Rect ClickFast;
     Rect ClickRate;
+    Rect ClickAd;
 
     public Options(Context context, AttributeSet attrs) {
         super(context, attrs);
         invalidate();
     }
+
+
 
         public Rect getBounds()
         {
@@ -82,6 +87,13 @@ public class Options extends View {
         canvas.drawRect(ClickRate, paintButton);
         canvas.drawRect(ClickRate, paintStrokeButton);
         FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, "Rate the app", ClickRate, 0);
+
+        if(MainActivity.readBuy(98)==0) {
+            ClickAd = main.get(5);
+            canvas.drawRect(ClickAd, paintButton);
+            canvas.drawRect(ClickAd, paintStrokeButton);
+            FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, "Remove ADS", ClickAd, 0);
+        }
 
         String sped=MainActivity.readSpeed()==10?"Slow":MainActivity.readSpeed()==30?"Fast":"Normal";
         FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, "Speed: "+sped, main.get(3), 0);
@@ -161,6 +173,14 @@ public class Options extends View {
                 } catch (android.content.ActivityNotFoundException anfe) {
                     getContext().startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
                 }
+
+            }
+
+            if(ClickAd.contains((int)event.getX(),(int)event.getY()))
+            {
+
+                ((OptionsActivity)getContext()).buyNodAds();
+
 
             }
             if(ClickMute.contains((int)event.getX(),(int)event.getY()))

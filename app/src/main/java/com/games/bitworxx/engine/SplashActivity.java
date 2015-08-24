@@ -5,6 +5,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 
 public class SplashActivity extends Activity {
@@ -13,6 +14,10 @@ public class SplashActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        if(MainActivity.readBuy(51)!=0)
+        {
+            findViewById(R.id.adView).setVisibility(View.INVISIBLE);
+        }
     }
 
     @Override

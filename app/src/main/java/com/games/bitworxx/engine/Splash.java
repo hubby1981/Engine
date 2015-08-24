@@ -61,8 +61,14 @@ private Timer Exit;
 
 
         Rect rbit = new Rect(r.centerX()-w/2,r.centerY()-h/2,r.centerX()+w/2,r.centerY()+h/2);
-        canvas.drawBitmap(icon,new Rect(0,0,icon.getWidth(),icon.getHeight()),rbit, null);
+        canvas.drawBitmap(icon, new Rect(0, 0, icon.getWidth(), icon.getHeight()), rbit, null);
         FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, "a biitworx game", main.get(10), 0);
         FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, "Tasty Flyer", main.get(2), 0);
+        if(MainActivity.readBuy(51)==0) {
+            FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, "    The ads can be disabled in the  ", main.get(12), 0);
+            FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, "      options via in app purchase     ", main.get(13), 1);
+
+        }
+
     }
 }

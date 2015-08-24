@@ -18,6 +18,7 @@ import com.games.bitworxx.engine.characters.GameConst;
 import com.games.bitworxx.engine.characters.Lady;
 import com.games.bitworxx.engine.characters.Locust;
 import com.games.bitworxx.engine.characters.Spirit;
+import com.games.bitworxx.engine.util.ShopHelperFlyer;
 
 import java.util.ArrayList;
 
@@ -33,7 +34,10 @@ public class Shop extends View {
 
     }
 
-
+    private ShopHelperFlyer getHelper()
+    {
+        return ((ShopActivity)getContext()).ShopHelper;
+    }
     @Override
     protected void onDraw(Canvas canvas)
     {
@@ -164,7 +168,7 @@ int other=0;
             FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, ss1, Buy1, 0);
 
 
-            FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, ShopActivity.Price1 != null ? ShopActivity.Price1 : buyStorePrice1, RectHandler.combineRects(rectsBuy1.get(3), rectsBuy1.get(4)), 0);
+            FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, getHelper().Price1 != null ? getHelper().Price1 : buyStorePrice1, RectHandler.combineRects(rectsBuy1.get(3), rectsBuy1.get(4)), 0);
             other++;
         }
         else
@@ -178,7 +182,7 @@ int other=0;
             canvas.drawRect(Buy2, paintStrokeButton);
             FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, ss1, Buy2, 0);
 
-            FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas,ShopActivity.Price2!=null?ShopActivity.Price2: buyStorePrice2, RectHandler.combineRects(rectsBuy2.get(3), rectsBuy2.get(4)), 0);
+            FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas,getHelper().Price2!=null?getHelper().Price2: buyStorePrice2, RectHandler.combineRects(rectsBuy2.get(3), rectsBuy2.get(4)), 0);
             other++;
 
         }
@@ -194,7 +198,7 @@ int other=0;
             canvas.drawRect(Buy3, paintStrokeButton);
 
             FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, ss1, Buy3, 0);
-            FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, ShopActivity.Price3!=null?ShopActivity.Price3:buyStorePrice3, RectHandler.combineRects(rectsBuy3.get(3),      rectsBuy3.get(4)),   0);
+            FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, getHelper().Price3!=null?getHelper().Price3:buyStorePrice3, RectHandler.combineRects(rectsBuy3.get(3),      rectsBuy3.get(4)),   0);
             other++;
 
         }
@@ -209,7 +213,7 @@ int other=0;
             canvas.drawRect(Buy4, paintButton);
             canvas.drawRect(Buy4, paintStrokeButton);
             FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas,ss1, Buy4, 0);
-            FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas,ShopActivity.Price4!=null?ShopActivity.Price4: buyStorePrice4, RectHandler.combineRects(rectsBuy4.get(3), rectsBuy4.get(4)), 0);
+            FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas,getHelper().Price4!=null?getHelper().Price4: buyStorePrice4, RectHandler.combineRects(rectsBuy4.get(3), rectsBuy4.get(4)), 0);
             other++;
 
         }
@@ -224,7 +228,7 @@ int other=0;
             canvas.drawRect(Buy5, paintButton);
             canvas.drawRect(Buy5, paintStrokeButton);
             FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, ss1, Buy5, 0);
-            FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, ShopActivity.Price5!=null?ShopActivity.Price5:buyStorePrice5, RectHandler.combineRects(rectsBuy5.get(3), rectsBuy5.get(4)), 0);
+            FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, getHelper().Price5!=null?getHelper().Price5:buyStorePrice5, RectHandler.combineRects(rectsBuy5.get(3), rectsBuy5.get(4)), 0);
             other++;
 
         }
@@ -239,7 +243,7 @@ int other=0;
             canvas.drawRect(Buy6, paintButton);
             canvas.drawRect(Buy6, paintStrokeButton);
             FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, ss1, Buy6, 0);
-            FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas,ShopActivity.Price6!=null?ShopActivity.Price6: buyStorePrice6, RectHandler.combineRects(rectsBuy6.get(3),      rectsBuy6.get(4)),   0);
+            FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas,getHelper().Price6!=null?getHelper().Price6: buyStorePrice6, RectHandler.combineRects(rectsBuy6.get(3),      rectsBuy6.get(4)),   0);
 
         }
         else
@@ -294,32 +298,32 @@ int other=0;
             }
             else  if(Buy6.contains((int)event.getX(),(int)event.getY()))
             {
-                ((ShopActivity)getContext()).buyPack();
+                getHelper().buyPack();
 
             }
             else  if(Buy1.contains((int)event.getX(),(int)event.getY()))
             {
-                ((ShopActivity)getContext()).buyChar1();
+                getHelper().buyChar1();
 
             }
             else  if(Buy2.contains((int) event.getX(), (int) event.getY()))
             {
-                ((ShopActivity)getContext()).buyChar2();
+                getHelper().buyChar2();
 
             }
             else  if(Buy3.contains((int)event.getX(),(int)event.getY()))
             {
-                ((ShopActivity)getContext()).buyChar3();
+                getHelper().buyChar3();
 
             }
             else  if(Buy4.contains((int)event.getX(),(int)event.getY()))
             {
-                ((ShopActivity)getContext()).buyChar4();
+                getHelper().buyChar4();
 
             }
             else  if(Buy5.contains((int)event.getX(),(int)event.getY()))
             {
-                ((ShopActivity)getContext()).buyChar5();
+                getHelper().buyChar5();
 
             }
         }

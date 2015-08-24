@@ -68,9 +68,11 @@ public class ShopActivity extends Activity {
         {
             if (result.isFailure()) {
                 // Handle error
+                MainActivity.sendTracking("Shop", "buy", "ERROR",result.getMessage());
                 return;
             }
             else {
+                MainActivity.sendTracking("Shop", "buy", "Consume",result.getMessage());
                 mHelper.consumeAsync(purchase, mConsumeFinishedListener);
             }
 
@@ -217,7 +219,7 @@ public IabHelper mHelper;
                                               IabResult result) {
 
                     if (result.isSuccess()) {
-
+                        MainActivity.sendTracking("Shop", "buy", "SUCCESS CONSUME",result.getMessage());
                        if (purchase.getSku().equals(SKU_BUY1)) {
 
 
@@ -246,6 +248,7 @@ public IabHelper mHelper;
 
                     else {
                         // handle error
+                        MainActivity.sendTracking("Shop", "buy", "ERROR CONSUME",result.getMessage());
                     }
                 }
             };

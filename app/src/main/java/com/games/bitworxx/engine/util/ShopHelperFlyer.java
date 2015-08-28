@@ -19,6 +19,11 @@ public class ShopHelperFlyer {
     {
         MyActivity = a;
 
+        init();
+    }
+
+    public void init()
+    {
         mHelper = new IabHelper(MyActivity, MainActivity.KEY);
         MainActivity.sendTracking("Shop", "shop", "UX", "open shop");
 
@@ -288,6 +293,13 @@ public class ShopHelperFlyer {
         }
         catch(Exception e){
             MainActivity.sendTracking("Shop", "buy", "ERROR CALL6",e.getMessage());
+            mHelper.dispose();
+            init();
+            try
+            {
+                mHelper.launchPurchaseFlow(MyActivity,SKU_BUY6,SKU_CODE_BUY6,mPurchaseFinishedListener);
+
+            }catch (Exception e2){}
         }
 
 
@@ -302,6 +314,13 @@ public class ShopHelperFlyer {
         }
         catch(Exception e){
             MainActivity.sendTracking("Shop", "buy", "ERROR CALL1",e.getMessage());
+            mHelper.dispose();
+            init();
+            try
+            {
+                mHelper.launchPurchaseFlow(MyActivity,SKU_BUY1,SKU_CODE_BUY1,mPurchaseFinishedListener);
+
+            }catch (Exception e2){}
         }
     }
 
@@ -314,6 +333,13 @@ public class ShopHelperFlyer {
         }
         catch(Exception e){
             MainActivity.sendTracking("Shop", "buy", "ERROR CALL7",e.getMessage());
+            mHelper.dispose();
+            init();
+            try
+            {
+                mHelper.launchPurchaseFlow(MyActivity,SKU_BUY7,SKU_CODE_BUY7,mPurchaseFinishedListener);
+
+            }catch (Exception e2){}
         }
     }
     public void buyChar2()
@@ -325,6 +351,13 @@ public class ShopHelperFlyer {
         }
         catch(Exception e){
             MainActivity.sendTracking("Shop", "buy", "ERROR CALL2",e.getMessage());
+            mHelper.dispose();
+            init();
+            try
+            {
+                mHelper.launchPurchaseFlow(MyActivity,SKU_BUY2,SKU_CODE_BUY2,mPurchaseFinishedListener);
+
+            }catch (Exception e2){}
         }
     }
     public void buyChar3()
@@ -336,6 +369,13 @@ public class ShopHelperFlyer {
         }
         catch(Exception e){
             MainActivity.sendTracking("Shop", "buy", "ERROR CALL3",e.getMessage());
+            mHelper.dispose();
+            init();
+            try
+            {
+                mHelper.launchPurchaseFlow(MyActivity,SKU_BUY3,SKU_CODE_BUY3,mPurchaseFinishedListener);
+
+            }catch (Exception e2){}
         }
     }
     public void buyChar4()
@@ -347,6 +387,13 @@ public class ShopHelperFlyer {
         }
         catch(Exception e){
             MainActivity.sendTracking("Shop", "buy", "ERROR CALL4",e.getMessage());
+            mHelper.dispose();
+            init();
+            try
+            {
+                mHelper.launchPurchaseFlow(MyActivity,SKU_BUY4,SKU_CODE_BUY4,mPurchaseFinishedListener);
+
+            }catch (Exception e2){}
         }
     }
     public void buyChar5()
@@ -358,6 +405,13 @@ public class ShopHelperFlyer {
         }
         catch(Exception e){
             MainActivity.sendTracking("Shop", "buy", "ERROR CALL5",e.getMessage());
+            mHelper.dispose();
+            init();
+            try
+            {
+                mHelper.launchPurchaseFlow(MyActivity,SKU_BUY5,SKU_CODE_BUY5,mPurchaseFinishedListener);
+
+            }catch (Exception e2){}
         }
     }
 }

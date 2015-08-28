@@ -21,6 +21,7 @@ import com.games.bitworxx.engine.characters.Fly;
 import com.games.bitworxx.engine.characters.GameConst;
 import com.games.bitworxx.engine.characters.Locust;
 import com.games.bitworxx.engine.characters.Spider;
+import com.google.android.gms.games.Games;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -245,11 +246,29 @@ if(UPDATE) {
                 ThisChar.IsDead=true;
                 getBack().PLAY = false;
                 getBack().GAME_OVER = true;
+
                 if(MainActivity.readBest(GameConst.MyChar.getCode())<GameConst.GameCount)
                     MainActivity.saveBest(GameConst.GameCount);
                 if(MainActivity.readHigh()<GameConst.GameCount)
                     MainActivity.saveHigh(GameConst.GameCount);
                 TimeEnd = SystemClock.elapsedRealtime();
+
+                try {
+                  GameActivity ga= (GameActivity)getContext();
+                    if(ga!=null)
+                        ga.showAd();
+                }
+                catch(Exception e){
+
+
+                }
+
+
+
+
+                MainActivity.sendTracking("Game", "Game Over", "PLAY", "Score is "+GameConst.GameCount +" ID: "+MainActivity.readId());
+                MainActivity.sendTracking("Game", "Hit by", "PLAY", DEAD_BY);
+
             }
         }
     }
@@ -455,6 +474,9 @@ if(UPDATE) {
 
         FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, "Retry", Retry, 0);
         FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, "Close", Quit, 0);
+
+
+
 
     }
 

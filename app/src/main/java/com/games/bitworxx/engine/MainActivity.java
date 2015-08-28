@@ -18,9 +18,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.games.bitworxx.engine.characters.GameConst;
+import com.games.bitworxx.engine.util.ShopHelperFlyer;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.plus.Plus;
+
+import java.util.UUID;
 
 
 public class MainActivity extends Activity {
@@ -42,6 +47,9 @@ public class MainActivity extends Activity {
     public static MediaPlayer MP_UP=new MediaPlayer();
     public static MediaPlayer MP_PONG = new MediaPlayer();
 
+    public static ShopHelperFlyer ShopHelper;
+    public static GoogleApiClient ApiClient;
+
     public static Shader MetalShader;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +64,7 @@ public class MainActivity extends Activity {
         tracker.enableAdvertisingIdCollection(true);
         tracker.enableAutoActivityTracking(true);
 
-        sendTracking("Main","info","UX","start app");
+        sendTracking("Main", "info", "UX", "start app");
 
         new Thread(new Runnable() {
             @Override
@@ -104,7 +112,14 @@ public class MainActivity extends Activity {
 
 
         MetalShader= new BitmapShader(BitmapFactory.decodeResource(getResources(),R.drawable.metal), Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
-
+        ShopHelper = new ShopHelperFlyer(this);
+        saveId(readId());
+/*
+        ApiClient = new GoogleApiClient.Builder(this)
+                .addApi(Plus.API)
+                .addScope(Plus.SCOPE_PLUS_LOGIN).build();
+        if(ApiClient!=null)
+            ApiClient.connect();*/
         startSplash();
 
         GameConst.MOVE_MACE=readSpeed();
@@ -115,6 +130,8 @@ public class MainActivity extends Activity {
                 MainActivity.MP.setVolume(0f,0f);
             else
                 MainActivity.MP.setVolume(1f,1f);
+
+
     }
 
 
@@ -278,6 +295,22 @@ public class MainActivity extends Activity {
         SharedPreferences pref = getPref();
         SharedPreferences.Editor edit = pref.edit();
         edit.putInt(TXT.KEY_BEST+String.valueOf( GameConst.MyChar.getCode()), best);
+        edit.commit();
+    }
+
+    public static String readId()
+    {
+        SharedPreferences pref = getPref();
+        String id =  pref.getString(TXT.KEY_ID, "-1");
+        return id=="-1"? UUID.randomUUID().toString():id;
+    }
+
+
+    public static void saveId(String id)
+    {
+        SharedPreferences pref = getPref();
+        SharedPreferences.Editor edit = pref.edit();
+        edit.putString(TXT.KEY_ID, id);
         edit.commit();
     }
 

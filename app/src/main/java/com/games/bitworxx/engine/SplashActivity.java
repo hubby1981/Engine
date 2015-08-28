@@ -8,6 +8,10 @@ import android.view.MenuItem;
 import android.view.View;
 
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
+
 public class SplashActivity extends Activity {
 
     @Override
@@ -18,6 +22,18 @@ public class SplashActivity extends Activity {
         {
             findViewById(R.id.adView).setVisibility(View.INVISIBLE);
         }
+        else
+        {
+            findViewById(R.id.adView).setVisibility(View.VISIBLE);
+
+            AdRequest.Builder adRequestBuilder = new AdRequest.Builder();
+
+            adRequestBuilder.addTestDevice("2A399D156F5F2E0FEE7B0056DD3D0D56");
+            AdView view =(AdView) findViewById(R.id.adView);
+            AdRequest r = adRequestBuilder.build();
+            view.loadAd(r);
+        }
+
     }
 
     @Override

@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.Locale;
+
 
 public class TutorialActivity extends ActionBarActivity {
 
@@ -12,6 +14,8 @@ public class TutorialActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutorial);
+        MainActivity.sendTracking("Tutorial", "Tutorial", "UX", "Open Tutorial in " + Locale.getDefault().getCountry());
+
     }
 
     @Override

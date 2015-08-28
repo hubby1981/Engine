@@ -8,7 +8,17 @@
     <string name="title_activity_splash">SplashActivity</string>
     <string name="title_activity_tutorial">TutorialActivity</string>
     <string name="title_activity_options">OptionsActivity</string>
-    <string name="ad_game">ca-app-pub-5070224682487021/4565425393</string>
-    <string name="ad_splash">ca-app-pub-5070224682487021/6042158598</string>
+    <string name="app_id">1005027804944</string>
+    <string name="achievement_arty_mcfly">CgkIkI7NgqAdEAIQBw</string>
+    <string name="achievement_lolo_locust">CgkIkI7NgqAdEAIQCA</string>
+    <string name="achievement_budda_fly">CgkIkI7NgqAdEAIQCQ</string>
+    <string name="achievement_little_spirit">CgkIkI7NgqAdEAIQCg</string>
+    <string name="achievement_lady_bug">CgkIkI7NgqAdEAIQCw</string>
+    <string name="leaderboard_arty_mcfly_best">CgkIkI7NgqAdEAIQAQ</string>
+    <string name="leaderboard_lolo_locust_best">CgkIkI7NgqAdEAIQAg</string>
+    <string name="leaderboard_wanna_bee_best">CgkIkI7NgqAdEAIQAw</string>
+    <string name="leaderboard_budda_fly_best">CgkIkI7NgqAdEAIQBA</string>
+    <string name="leaderboard_little_spirit_best">CgkIkI7NgqAdEAIQBQ</string>
+    <string name="leaderboard_lady_bug_best">CgkIkI7NgqAdEAIQBg</string>
 
 </resources>

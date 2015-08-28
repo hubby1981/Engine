@@ -1,5 +1,6 @@
 package com.games.bitworxx.engine;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Canvas;
@@ -19,6 +20,7 @@ import com.games.bitworxx.engine.characters.Lady;
 import com.games.bitworxx.engine.characters.Locust;
 import com.games.bitworxx.engine.characters.Spider;
 import com.games.bitworxx.engine.characters.Spirit;
+import com.games.bitworxx.engine.util.ShopHelperFlyer;
 
 import java.util.ArrayList;
 
@@ -268,7 +270,8 @@ public Rect getBounds()
     @Override
     protected void onDraw(Canvas canvas)
     {
-        drawIt(canvas);
+        try{
+        drawIt(canvas);}catch(Exception e){}
     }
 
     @Override
@@ -281,9 +284,24 @@ public Rect getBounds()
             {
                 if(GameConst.MyChar.isLocked())
                 {
-                    MainActivity.Shop.run();
+
+                    try {
+
+                        if (MainActivity.ShopHelper != null) {
+
+                            MainActivity.ShopHelper.buyPack();
+                        } else {
+                            MainActivity.Shop.run();
+                        }
+                    }catch(Exception e)
+                    {
+                        MainActivity.Shop.run();
+                    }
+
                 }else{
-                MainActivity.Start.run();}
+                    MainActivity.sendTracking("MAIN Menu", "Play", "MENU","Play Act. Char: "+ String.valueOf(TheChar));
+
+                    MainActivity.Start.run();}
             }
             if(ClickHow.contains((int)event.getX(),(int)event.getY()))
             {
@@ -301,6 +319,7 @@ public Rect getBounds()
                 if(TheChar==0)TheChar=MaxChar;
                 changeChar();
                 invalidate();
+                MainActivity.sendTracking("MAIN Menu", "Select other char", "UX","Act. Char: "+ String.valueOf(TheChar));
             }
             if(ClickSelect2.contains((int)event.getX(),(int)event.getY()))
         {
@@ -308,6 +327,8 @@ public Rect getBounds()
             if(TheChar>MaxChar)TheChar=1;
             changeChar();
             invalidate();
+            MainActivity.sendTracking("MAIN Menu", "Select other char", "UX", "Act. Char: " + String.valueOf(TheChar));
+
         }
 
             if(ClickClose.contains((int)event.getX(),(int)event.getY()))

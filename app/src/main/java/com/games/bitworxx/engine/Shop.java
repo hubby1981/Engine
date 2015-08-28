@@ -36,7 +36,7 @@ public class Shop extends View {
 
     private ShopHelperFlyer getHelper()
     {
-        return ((ShopActivity)getContext()).ShopHelper;
+        return MainActivity.ShopHelper;
     }
     @Override
     protected void onDraw(Canvas canvas)

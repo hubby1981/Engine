@@ -30,20 +30,20 @@ import java.util.List;
 
 public class ShopActivity extends Activity {
 
-        ShopHelperFlyer ShopHelper;
+
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (ShopHelper.mHelper != null) ShopHelper.mHelper.dispose();
-        ShopHelper.mHelper = null;
+        if (MainActivity.ShopHelper.mHelper != null) MainActivity.ShopHelper.mHelper.dispose();
+            MainActivity.ShopHelper.mHelper = null;
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode,
                                     Intent data)
     {
-        if (!ShopHelper.mHelper.handleActivityResult(requestCode,
+        if (!MainActivity.ShopHelper.mHelper.handleActivityResult(requestCode,
                 resultCode, data)) {
             super.onActivityResult(requestCode, resultCode, data);
         }
@@ -52,7 +52,7 @@ public class ShopActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ShopHelper=new ShopHelperFlyer(this);
+
         setContentView(R.layout.activity_shop);
 
 

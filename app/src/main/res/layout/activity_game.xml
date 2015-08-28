@@ -24,11 +24,12 @@
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
-        android:layout_width="wrap_content"
+
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
         ads:adSize="BANNER"
-        ads:adUnitId="@string/ad_splash">
+        ads:adUnitId="ca-app-pub-5070224682487021/4565425393">
     </com.google.android.gms.ads.AdView>
 </RelativeLayout>

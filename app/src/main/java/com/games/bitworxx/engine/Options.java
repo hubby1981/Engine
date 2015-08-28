@@ -24,6 +24,7 @@ import com.games.bitworxx.engine.characters.Spirit;
 import com.games.bitworxx.engine.util.ShopHelperFlyer;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  * Created by WEIS on 30.07.2015.
@@ -88,7 +89,7 @@ public class Options extends View {
         canvas.drawRect(ClickRate, paintStrokeButton);
         FontRectPainter.drawtextOnCanvasCenter(GameConst.FONT, canvas, "Rate the app", ClickRate, 0);
 
-        if(MainActivity.readBuy(98)==0) {
+        if(MainActivity.readBuy(51)==0) {
             ClickAd = main.get(5);
             canvas.drawRect(ClickAd, paintButton);
             canvas.drawRect(ClickAd, paintStrokeButton);
@@ -167,6 +168,8 @@ public class Options extends View {
 
             if(ClickRate.contains((int)event.getX(),(int)event.getY()))
             {
+                MainActivity.sendTracking("Options", "Rate", "UX", "Rate the app "+ Locale.getDefault().getCountry());
+
                 final String appPackageName = getContext().getPackageName(); // getPackageName() from Context or Activity object
                 try {
                     getContext().startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
@@ -178,8 +181,9 @@ public class Options extends View {
 
             if(ClickAd.contains((int)event.getX(),(int)event.getY()))
             {
+                 MainActivity.sendTracking("Options", "Buy NoAds", "UX", "Remove ads in "+ Locale.getDefault().getCountry());
 
-                ((OptionsActivity)getContext()).buyNodAds();
+                 MainActivity.ShopHelper.buyNoAds();
 
 
             }

@@ -13,6 +13,7 @@ public class TXT {
     public static String KEY_MUSIC="MUSIC";
     public static String KEY_SPEED="SPEED";
     public static String KEY_AD="AD";
+    public static String KEY_ID="ID";
 
 
 }
